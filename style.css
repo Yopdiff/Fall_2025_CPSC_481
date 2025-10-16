@@ -1,0 +1,344 @@
+/* --- Global Styles & Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Patrick Hand', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    color: #333;
+}
+
+/* --- App Container --- */
+.app-container {
+    width: 100%;
+    max-width: 390px;
+    aspect-ratio: 390 / 844;
+    max-height: 844px;
+    background-color: #f5f3ef;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- Header & Navigation --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Special header for the logo on the first page */
+.logo-header {
+    justify-content: center;
+}
+.app-logo {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+header .icon {
+    font-size: 24px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav.main-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 2px solid #ccc;
+    background-color: #f5f3ef;
+    margin-top: auto; /* Pushes nav to the bottom */
+}
+
+nav.main-nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 28px;
+    padding: 5px 10px;
+}
+
+/* --- Main Content Area --- */
+main {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* --- Sketchy UI Elements --- */
+.sketch-button, .sketch-input, .sketch-box {
+    border: 2px solid #333;
+    border-radius: 8px 6px 9px 7px / 7px 9px 6px 8px; /* Wobbly border effect */
+    background-color: transparent;
+    padding: 15px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.sketch-input {
+    text-align: left;
+}
+
+.sketch-button:hover {
+    background-color: #e9e7e2;
+}
+
+/* --- Specific Page Styles --- */
+
+/* Index Page */
+.upload-box {
+    border: 3px dashed #888;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: #888;
+    flex-grow: 1; /* Makes the box fill available space */
+    margin-bottom: 0;
+}
+
+/* Search Page */
+.city-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Dates Page */
+.date-inputs {
+    margin-bottom: 20px;
+}
+.date-inputs div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.date-inputs label {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    width: 50px;
+}
+.date-inputs .sketch-input {
+    margin-bottom: 0;
+}
+.calendar {
+    text-align: center;
+}
+.calendar-header {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.calendar-grid span {
+    padding: 8px;
+    font-size: 1.1rem;
+}
+.day-name {
+    font-weight: bold;
+    color: #888;
+}
+.day.selected {
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+}
+.day.range {
+    background-color: #d1d5db;
+    border-radius: 0;
+}
+.day.start-range {
+    border-radius: 50% 0 0 50%;
+}
+.day.end-range {
+    border-radius: 0 50% 50% 0;
+}
+
+/* Flights Page */
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+}
+.date-header {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+.flight-card {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 5px 15px;
+}
+.flight-times {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.flight-duration {
+    text-align: right;
+    color: #666;
+}
+.flight-airports {
+    color: #666;
+}
+.flight-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+/* --- Added for "Together" Feature --- */
+
+/* Back button in header */
+.header-with-back {
+    justify-content: flex-start;
+    gap: 15px;
+}
+.back-button {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Sub-navigation tabs (upcoming/past) */
+.sub-tabs {
+    display: flex;
+    gap: 20px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+.sub-tabs span {
+    padding: 5px 10px;
+    font-size: 1.2rem;
+}
+.sub-tabs span.active {
+    border-bottom: 3px solid #333;
+    font-weight: bold;
+}
+
+/* Trip Card on Together page */
+.trip-card {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.trip-card h2 {
+    margin: 0 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.trip-card p {
+    margin: 0;
+    color: #666;
+}
+.add-trip-button {
+    border: 3px dashed #888;
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px;
+    font-size: 2rem;
+    color: #888;
+    text-align: center;
+    background: transparent;
+}
+
+/* Trip Details Page */
+.trip-header {
+    width: 100%;
+    text-align: center;
+}
+.trip-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+.trip-header p {
+    margin: 0;
+    color: #666;
+}
+.hamburger-menu {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.itinerary-day {
+    margin-top: 20px;
+}
+.itinerary-day h3 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+.itinerary-item {
+    border-bottom: 2px solid #ccc;
+    padding: 10px 0;
+}
+
+/* Invite Box */
+.invite-box {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.invite-box h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    text-align: center;
+}
+.invite-box .sketch-button {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Final invite confirmation checkmark */
+.checkmark {
+    font-size: 2rem;
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: fit-content;
+    margin: 10px auto 0 auto;
+}
