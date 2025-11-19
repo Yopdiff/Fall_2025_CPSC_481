@@ -3,30 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel App - Home</title>
+    <title>Roam Together Tours</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header class="logo-header">
-            <div class="app-logo">
-                <span>ROAM</span>
-                <span>TOGETHER</span>
-                <span>TOURS</span>
+
+    <div id="mobile-container">
+
+        <header>
+            <div class="tab-bar">
+                <button class="tab-btn active" id="tab-itinerary">Itinerary</button>
+                <button class="tab-btn" id="tab-share">Share</button>
+                <button class="tab-btn" id="tab-search">Search</button>
             </div>
         </header>
-        <main>
-            <a href="search.html" class="upload-box">
-                +
-            </a>
+
+        <main class="content" id="main-content">
+            <div class="logo-section">
+                <img src="./public/ChatGPT_Image_Oct_28_2025_at_09_43_55_PM.png" alt="A placeholder image of a travel destination">
+            </div>
+
+            <div class="add-trip-box">
+                <div class="plus-btn">+</div>
+            </div>
         </main>
-        <nav class="main-nav">
-            <a href="#">🔍</a>
-            <a href="#">🗺️</a>
-            <a href="#">✈️</a>
-            <a href="#">❤️</a>
-            <a href="#">⚙️</a>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item">
+                <i class="fas fa-plane"></i>
+                <span>Flight</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
         </nav>
+
     </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
