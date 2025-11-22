@@ -33,3 +33,26 @@ function setActiveTab(activeBtn) {
     // Add 'active' class to the clicked button
     activeBtn.classList.add('active');
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const allBtns = document.querySelectorAll('.tab-btn');
+    allBtns.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    const fabContainer = document.querySelector('.fab-container');
+    const fabBtn = document.getElementById('fab-btn');
+
+    if (fabContainer && fabBtn) {
+        fabBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            fabContainer.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!fabContainer.contains(event.target)) {
+                fabContainer.classList.remove('open');
+            }
+        });
+    }
+});

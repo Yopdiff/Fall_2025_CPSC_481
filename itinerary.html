@@ -13,7 +13,8 @@
 
     <div id="mobile-container">
 
-        <header style="padding:35px">
+        <header>
+            <img src="./public/logo.png" alt="A placeholder image of a travel destination">
         </header>
         <div class="tab-bar">
             <a href="itinerary.html" class="tab-btn" id="tab-itinerary">Itinerary</a>
@@ -21,15 +22,26 @@
             <a href="search.html" class="tab-btn" id="tab-search">Search</a>
         </div>
         <main class="content" id="main-content">
-            <div class="logo-section">
-                <img src="./public/logo.png" alt="A placeholder image of a travel destination">
-            </div>
-
             <div class="add-trip-box">
                 <div class="plus-btn">+</div>
             </div>
         </main>
 
+        <div class="fab-container">
+            <button class="fab-btn" id="fab-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="fab-menu" id="fab-menu">
+                <a href="#" class="fab-menu-item">
+                    <i class="fas fa-edit"></i>
+                    <span>Edit itinerary</span>
+                </a>
+                <a href="#" class="fab-menu-item">
+                    <i class="fas fa-trash"></i>
+                    <span>Delete itinerary</span>
+                </a>
+            </div>
+        </div>
         <nav class="bottom-nav">
             <a href="#" class="nav-item">
                 <i class="fas fa-plane"></i>

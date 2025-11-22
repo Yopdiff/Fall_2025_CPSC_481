@@ -27,8 +27,15 @@ body {
 
 /* --- 3. HEADER & TABS --- */
 header {
-    background-color: #89CFF0; /* Light Blue */
-    padding-top: 20px; 
+    background-color: #89CFF0; /* Light Blue */ 
+}
+
+header img {
+    width: 100%;
+    max-width: 70px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .tab-bar {
@@ -138,4 +145,67 @@ header {
 
 .nav-item span {
     font-weight: bold;
+}
+
+/* --- 6. FAB BUTTON --- */
+
+.fab-container {
+    position: absolute;
+    right: 16px;
+    bottom: 90px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 12px;
+    z-index: 20;
+}
+
+.fab-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background-color: #2C3E50;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fab-container.open .fab-btn {
+    transform: rotate(45deg);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.25);
+}
+
+.fab-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fab-container.open .fab-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.fab-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #2C3E50;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
