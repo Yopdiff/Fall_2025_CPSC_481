@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roam Together Tours</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="mobile-container">
+
+        <header>
+            <button class="back-btn" id="back-btn" aria-label="Go back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <img src="./public/logo.png" alt="Roam Together Tours logo">
+        </header>
+
+        <main class="content search-content">
+            <form class="search-bar" id="search-form">
+                <input type="text" id="location-search" placeholder="Search..." autocomplete="off">
+                <button type="submit" id="search-button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+
+            <div class="location-grid" id="location-grid">
+                <button class="location-card" data-name="Vancouver">
+                    <span>Vancouver</span>
+                </button>
+                <button class="location-card" data-name="Toronto">
+                    <span>Toronto</span>
+                </button>
+                <button class="location-card" data-name="Paris">
+                    <span>Paris</span>
+                </button>
+                <button class="location-card" data-name="Berlin">
+                    <span>Berlin</span>
+                </button>
+                <button class="location-card" data-name="Tokyo">
+                    <span>Tokyo</span>
+                </button>
+                <button class="location-card" data-name="New York">
+                    <span>New York</span>
+                </button>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item">
+                <i class="fas fa-plane"></i>
+                <span>Flight</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>
