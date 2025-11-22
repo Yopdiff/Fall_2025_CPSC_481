@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roam Together Tours</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="mobile-container">
+        <header class="destination-header">
+            <button class="back-btn" id="destination-back" aria-label="Go back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 id="destination-title">Destination</h1>
+        </header>
+
+        <main class="content destination-content">
+            <section class="destination-section">
+                <button class="destination-action" data-target="new-flight">
+                    Book a new flight
+                </button>
+                <form class="destination-panel" id="panel-new-flight">
+                    <label class="input-label" for="flight-from">From</label>
+                    <input type="date" id="flight-from" name="flight-from">
+
+                    <label class="input-label" for="flight-to">To</label>
+                    <input type="date" id="flight-to" name="flight-to">
+
+                    <button type="submit" class="panel-submit">Search flights</button>
+                </form>
+            </section>
+
+            <section class="destination-section">
+                <button class="destination-action secondary" data-target="existing-ticket">
+                    Add existing ticket
+                </button>
+                <form class="destination-panel" id="panel-existing-ticket">
+                    <label class="input-label" for="confirmation-number">Confirmation number</label>
+                    <input type="text" id="confirmation-number" name="confirmation-number" placeholder="e.g. ABC123">
+
+                    <label class="input-label" for="airline-name">Airline</label>
+                    <input type="text" id="airline-name" name="airline-name" placeholder="Airline name">
+
+                    <button type="submit" class="panel-submit">Find booking</button>
+                </form>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item">
+                <i class="fas fa-plane"></i>
+                <span>Flight</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="destination.js"></script>
+</body>
+</html>
+

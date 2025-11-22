@@ -63,3 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Hook location cards and pass selection via query string
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.location-card');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const name = card.dataset.name;
+            window.location.href = `destination.html?location=${encodeURIComponent(name)}`;
+        });
+    });
+});

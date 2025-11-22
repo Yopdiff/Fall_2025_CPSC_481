@@ -314,3 +314,108 @@ header img {
     outline: none;
     background: #cfcfcf;
 }
+
+/* --- 8. DESTINATION --- */
+
+.destination-header {
+    background: linear-gradient(180deg, #89CFF0 0%, #7ab9d1 100%);
+    padding: clamp(16px, 4vw, 28px) clamp(16px, 5vw, 24px) clamp(10px, 3vw, 18px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.destination-header h1 {
+    margin: 0;
+    font-size: clamp(20px, 5vw, 26px);
+    color: #2C3E50;
+}
+
+.destination-content {
+    gap: 16px;
+    padding-bottom: 100px;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.destination-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.destination-action {
+    width: 100%;
+    padding: 18px 16px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 12px;
+    background: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2C3E50;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.destination-action.secondary {
+    background: #f8f8f8;
+}
+
+.destination-action:focus,
+.destination-action:hover {
+    outline: none;
+    background: #eef6fb;
+}
+
+.destination-panel {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 18px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.destination-panel.open {
+    display: flex;
+}
+
+.input-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2C3E50;
+}
+
+.destination-panel input {
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 16px;
+    color: #2C3E50;
+}
+
+.destination-panel input:focus {
+    outline: 2px solid #89CFF0;
+}
+
+.panel-submit {
+    margin-top: 8px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #89CFF0;
+    color: #2C3E50;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.panel-submit:hover,
+.panel-submit:focus {
+    background: #6fb6d6;
+    outline: none;
+}
