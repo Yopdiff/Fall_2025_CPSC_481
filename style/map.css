@@ -1,0 +1,42 @@
+/* Make the map fill the entire mobile container */
+#map {
+    height: 100vh; /* Full height */
+    width: 100%;
+    z-index: 1; /* Behind everything else */
+}
+
+/* Floating Search Bar */
+.map-search-bar {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 100; /* On top of map */
+}
+
+.map-search-bar i {
+    color: #7f8c8d;
+}
+
+.map-search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    color: #2C3E50;
+}
+
+/* Ensure bottom nav sits on top of map */
+.bottom-nav {
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95); /* Slight transparency */
+    backdrop-filter: blur(5px);
+}

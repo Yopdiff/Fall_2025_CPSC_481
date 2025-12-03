@@ -18,7 +18,8 @@ body {
     width: 100%;
     max-width: 400px; 
     background-color: white;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     position: relative; 
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
     display: flex;
@@ -97,12 +98,8 @@ header img {
     align-items: center;
     padding: 20px;
     text-align: center;
-    
-    /* FIX: Increase padding-bottom to clear the fixed nav bar */
-    /* The nav bar is roughly 70-80px tall, so 100px is safe */
+    min-height: 0;
     padding-bottom: 100px; 
-    
-    /* Ensure content scrolls properly */
     overflow-y: auto;
     width: 100%;
 }
@@ -124,6 +121,7 @@ header img {
     text-decoration: none;
     color: inherit;
     width: 100%;
+    flex-shrink: 0;
     height: 120px;
     border: 1px solid #ccc;
     border-radius: 10px;

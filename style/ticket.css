@@ -18,9 +18,13 @@
 }
 
 .ticket-content {
+    display: block;
     background: #f0f2f5;
     padding: 20px;
     padding-bottom: 100px; 
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .success-message {
