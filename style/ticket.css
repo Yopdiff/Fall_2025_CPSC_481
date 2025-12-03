@@ -1,0 +1,174 @@
+.ticket-header {
+    background: #2C3E50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.ticket-header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.ticket-header .back-btn {
+    color: #2C3E50;
+}
+
+.ticket-content {
+    background: #f0f2f5;
+    padding: 20px;
+}
+
+.success-message {
+    text-align: center;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+.success-message i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.success-message p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Ticket Card */
+.ticket-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 100%;
+}
+
+.ticket-top {
+    background: #89CFF0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.airline-logo {
+    font-weight: 800;
+    color: #2C3E50;
+    font-size: 1.1rem;
+}
+
+.class-badge {
+    background: rgba(255,255,255,0.3);
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2C3E50;
+}
+
+.route-info {
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.city-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.city-group .code {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2C3E50;
+}
+
+.city-group .time {
+    color: #7f8c8d;
+    font-weight: 600;
+}
+
+.plane-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #89CFF0;
+}
+
+.plane-icon i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.ticket-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 0 20px 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-item label {
+    font-size: 0.7rem;
+    color: #95a5a6;
+    text-transform: uppercase;
+}
+
+.detail-item span {
+    font-weight: 700;
+    color: #2C3E50;
+}
+
+/* Perforated Line Effect */
+.ticket-divider {
+    position: relative;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.dashed-line {
+    width: 100%;
+    border-top: 2px dashed #e0e0e0;
+}
+
+.notch-l, .notch-r {
+    width: 20px;
+    height: 20px;
+    background: #f0f2f5; /* Matches page bg */
+    border-radius: 50%;
+    position: absolute;
+}
+
+.notch-l { left: -10px; }
+.notch-r { right: -10px; }
+
+.ticket-bottom {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code {
+    font-size: 5rem;
+    color: #2C3E50;
+}
+
+.ticket-bottom p {
+margin-top: 10px;
+color: #95a5a6;
+font-size: 0.8rem;
+}

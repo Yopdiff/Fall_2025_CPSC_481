@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/ticket.css">
+</head>
+<body>
+
+    <div id="mobile-container">
+        <header class="ticket-header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>Boarding Pass</h1>
+        </header>
+
+        <main class="content ticket-content">
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <p>Booking Confirmed!</p>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-top">
+                    <div class="airline-logo" id="t-airline">Airline</div>
+                    <div class="class-badge">Economy</div>
+                </div>
+                
+                <div class="route-info">
+                    <div class="city-group">
+                        <span class="code" id="t-origin-code">YVR</span>
+                        <span class="time" id="t-depart-time">10:00 AM</span>
+                    </div>
+                    <div class="plane-icon">
+                        <i class="fas fa-plane"></i>
+                        <span class="duration" id="t-duration">2h 30m</span>
+                    </div>
+                    <div class="city-group">
+                        <span class="code" id="t-dest-code">LAX</span>
+                        <span class="time" id="t-arrive-time">12:30 PM</span>
+                    </div>
+                </div>
+
+                <div class="ticket-details">
+                    <div class="detail-item">
+                        <label>Date</label>
+                        <span id="t-date">Dec 12</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Gate</label>
+                        <span>TBD</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Seat</label>
+                        <span>14B</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Flight</label>
+                        <span id="t-flight-num">AC123</span>
+                    </div>
+                </div>
+
+                <div class="ticket-divider">
+                    <div class="notch-l"></div>
+                    <div class="dashed-line"></div>
+                    <div class="notch-r"></div>
+                </div>
+
+                <div class="ticket-bottom">
+                    <div class="qr-code">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <p>Scan at gate</p>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <i class="fas fa-ticket-alt"></i>
+                <span>Ticket</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="ticket.js"></script>
+</body>
+</html>

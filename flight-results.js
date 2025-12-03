@@ -68,6 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
                 
+                const selectBtn = card.querySelector('.select-btn');
+                selectBtn.addEventListener('click', () => {
+                    // Save the specific flight object to session storage
+                    sessionStorage.setItem('bookedFlight', JSON.stringify(flight));
+                    
+                    // Save the dates we picked earlier
+                    sessionStorage.setItem('flightDate', document.getElementById('res-depart-date').value);
+                    
+                    // Redirect to the ticket page
+                    window.location.href = 'ticket.html';
+                });
+                
                 container.appendChild(card);
             });
         })
