@@ -39,8 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const from = newFlightForm.querySelector('[name="flight-from"]').value;
             const to = newFlightForm.querySelector('[name="flight-to"]').value;
-            const query = new URLSearchParams({ location: name, from, to }).toString();
-            window.location.href = `results.html?${query}`;
+            
+            // UPDATED: Use correct parameter names and file path
+            const query = new URLSearchParams({ 
+                destination: name, 
+                depart: from, 
+                return: to 
+            }).toString();
+            
+            window.location.href = `flight-results.html?${query}`;
         });
     }
 
@@ -51,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const confirmation = existingForm.querySelector('[name="confirmation-number"]').value;
             const airline = existingForm.querySelector('[name="airline-name"]').value;
             const query = new URLSearchParams({ location: name, confirmation, airline }).toString();
-            window.location.href = `ticket.html?${query}`;
-        });
+            window.location.href=`ticket.html?${query}`;
+    });
     }
 });

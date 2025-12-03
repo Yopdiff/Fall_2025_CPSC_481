@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/search.css">
+    <link rel="stylesheet" href="style/destination.css">
+    <link rel="stylesheet" href="style/flight-results.css">
+</head>
+<body>
+    <div id="mobile-container">
+        <header class="results-header">
+            <div class="header-top">
+                <button class="back-btn" onclick="history.back()" aria-label="Go back">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 id="results-title">Flights</h1>
+            </div>
+            <!-- Date bar REMOVED from here -->
+        </header>
+
+        <!-- Date bar MOVED to here -->
+        <div class="date-adjust-bar">
+            <div class="date-input-group">
+                <label>Depart</label>
+                <input type="date" id="res-depart-date">
+            </div>
+            <div class="date-divider">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="date-input-group">
+                <label>Return</label>
+                <input type="date" id="res-return-date">
+            </div>
+        </div>
+
+        <main class="content results-content" id="flight-list">
+            <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading flights...</div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <i class="fas fa-plane"></i>
+                <span>Flight</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Saved</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="flight-results.js"></script>
+</body>
+</html>
