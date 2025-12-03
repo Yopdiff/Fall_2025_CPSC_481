@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Itinerary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/flight-results.css">
+    <link rel="stylesheet" href="style/delete-mode.css"> <!-- Reusing checkbox styles -->
+    <link rel="stylesheet" href="style/share.css">
+</head>
+<body>
+
+    <div id="mobile-container">
+        <header>
+            <img src="./public/logo.png" alt="Logo">
+        </header>
+        
+        <div class="tab-bar">
+            <a href="itinerary.html" class="tab-btn" id="tab-itinerary">Itinerary</a>
+            <a href="share.html" class="tab-btn active" id="tab-share">Share</a>
+            <a href="search.html" class="tab-btn" id="tab-search">Search</a>
+        </div>
+
+        <main class="content" id="main-content">
+            <div id="share-list" style="width: 100%; display: flex; flex-direction: column; gap: 15px;"></div>
+        </main>
+
+        <!-- 1. Confirm Share FAB (Bottom Left - Green) -->
+        <button class="fab-btn share-confirm-btn hidden" id="share-confirm-fab">
+            <i class="fas fa-check"></i>
+        </button>
+
+        <!-- 2. Main Share FAB (Bottom Right) -->
+        <div class="fab-container">
+            <button class="fab-btn" id="fab-share-mode">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+
+        <!-- 3. Share Options Modal -->
+        <div id="share-options-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3>Share via</h3>
+                <div class="share-grid">
+                    <div class="share-option" onclick="alert('Instagram feature coming soon!')">
+                        <i class="fab fa-instagram" style="color: #E1306C;"></i>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="share-option" onclick="alert('Messenger feature coming soon!')">
+                        <i class="fab fa-facebook-messenger" style="color: #00B2FF;"></i>
+                        <span>Messenger</span>
+                    </div>
+                    <div class="share-option" onclick="alert('WhatsApp feature coming soon!')">
+                        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="share-option" id="btn-email-share">
+                        <i class="fas fa-envelope" style="color: #EA4335;"></i>
+                        <span>Email</span>
+                    </div>
+                    <div class="share-option" onclick="alert('Link copied!')">
+                        <i class="fas fa-link" style="color: #333;"></i>
+                        <span>Copy Link</span>
+                    </div>
+                </div>
+                <button class="modal-btn cancel" id="close-share-options" style="margin-top: 15px;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- 4. Email Input Modal -->
+        <div id="email-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3>Send via Email</h3>
+                <div class="input-group">
+                    <input type="text" id="recipient-name" placeholder="Recipient Name">
+                    <input type="email" id="recipient-email" placeholder="example@example.com">                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel" id="cancel-email">Cancel</button>
+                    <button class="modal-btn confirm" id="send-email-btn">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="share.js"></script>
+</body>
+</html>

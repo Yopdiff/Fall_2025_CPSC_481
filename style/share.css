@@ -1,0 +1,132 @@
+/* --- Share Mode Styles --- */
+
+/* Green Confirm FAB */
+.share-confirm-btn {
+    position: absolute;
+    left: 16px;
+    bottom: 90px;
+    z-index: 20;
+    background-color: #95a5a6; /* Grey initially */
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.share-confirm-btn.hidden {
+    display: none;
+}
+
+.share-confirm-btn.active {
+    background-color: #2ecc71; /* Green when active */
+    transform: scale(1.1);
+}
+
+/* Share Options Grid */
+.share-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.share-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+.share-option:hover {
+    background: #f0f2f5;
+}
+
+.share-option i {
+    font-size: 2rem;
+}
+
+.share-option span {
+    font-size: 0.75rem;
+    color: #2C3E50;
+}
+
+/* Email Input Styles */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.modal-btn.confirm {
+    background-color: #2ecc71;
+    color: white;
+}
+
+/* --- Shared With Dropdown (Accordion) --- */
+.shared-with-section {
+    background: #f8f9fa;
+    border-top: 1px dashed #ddd;
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.shared-with-section.open {
+    padding: 10px 15px;
+    max-height: 200px; /* Arbitrary limit for animation */
+}
+
+.shared-header {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+}
+
+.shared-person {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #2C3E50;
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.shared-person:last-child {
+    border-bottom: none;
+}
+
+/* Indicator that card has been shared */
+.share-indicator {
+    font-size: 0.8rem;
+    color: #2ecc71;
+    margin-right: 10px;
+    display: none;
+}
+
+.share-indicator.visible {
+    display: inline-block;
+}
