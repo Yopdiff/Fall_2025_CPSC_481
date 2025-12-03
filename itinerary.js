@@ -181,6 +181,6 @@ function viewTrip(index) {
     if (flight) {
         sessionStorage.setItem('bookedFlight', JSON.stringify(flight));
         sessionStorage.setItem('flightDate', flight.travelDate);
-        window.location.href = 'ticket.html';
+        window.location.href = 'itinerary-details.html';
     }
 }

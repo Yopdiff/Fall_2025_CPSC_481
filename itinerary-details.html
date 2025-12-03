@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details - Roam Together Tours</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ADDED: Leaflet CSS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/itinerary-details.css">
+</head>
+<body>
+
+    <div id="mobile-container">
+
+        <header>
+            <button class="back-btn" id="back-btn" aria-label="Go back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <img src="./public/logo.png" alt="Roam Together Tours logo">
+        </header>
+
+        <main class="content details-content" id="main-content">
+            
+            <h2 class="day-header">Day 1</h2>
+
+            <div class="start-location-card">
+                <div class="location-card-header">
+                    <div class="location-left">
+                        <i class="fas fa-plane-departure location-icon"></i>
+                        <div class="location-text">
+                            <h3>Move to YYC</h3>
+                            <span>Departure Point</span>
+                        </div>
+                    </div>
+                    <!-- ADDED: Countdown Timer -->
+                    <div class="countdown-container">
+                        <span class="countdown-label">Departs in</span>
+                        <div class="countdown-time" id="countdown-timer">--d --h --m</div>
+                    </div>
+                </div>
+                <!-- Mini Map Container -->
+                <div id="mini-map" class="mini-map-container"></div>
+            </div>
+
+            <div id="itinerary-schedule" class="schedule-container">
+                <!-- Dynamic items will go here -->
+            </div>
+
+            <button id="add-itinerary-item" class="add-activity-btn">
+                <i class="fas fa-plus"></i> Add Activity
+            </button>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- ADDED: Leaflet JS and Map Initialization -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="itinerary-details.js"></script>
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // YYC Coordinates: 51.1215, -114.0076
+            const map = L.map('mini-map', {
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false
+            }).setView([51.1215, -114.0076], 11);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(map);
+
+            L.marker([51.1215, -114.0076]).addTo(map)
+                .bindPopup('<b>Move to YYC</b><br>Departure Point')
+                .openPopup();
+        });
+    </script>
+</body>
+</html>
