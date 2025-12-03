@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style/search.css">
     <link rel="stylesheet" href="style/destination.css">
     <link rel="stylesheet" href="style/flight-results.css">
+    <link rel="stylesheet" href="style/delete-mode.css">
 </head>
 <body>
 
@@ -32,21 +33,44 @@
             </a>
         </main>
 
+        <!-- NEW: Delete Confirmation FAB (Bottom Left) -->
+        <button class="fab-btn delete-confirm-btn hidden" id="delete-confirm-fab">
+            <i class="fas fa-trash"></i>
+        </button>
+
         <div class="fab-container">
             <button class="fab-btn" id="fab-btn">
                 <i class="fas fa-plus"></i>
             </button>
             <div class="fab-menu" id="fab-menu">
-                <a href="#" class="fab-menu-item">
+                <!-- Added ID for JS access -->
+                <a href="#" class="fab-menu-item" id="btn-edit-mode">
                     <i class="fas fa-edit"></i>
                     <span>Edit itinerary</span>
                 </a>
-                <a href="#" class="fab-menu-item">
+                <!-- Added ID for JS access -->
+                <a href="#" class="fab-menu-item" id="btn-delete-mode">
                     <i class="fas fa-trash"></i>
                     <span>Delete itinerary</span>
                 </a>
             </div>
         </div>
+
+        <!-- NEW: Custom Confirmation Modal -->
+        <div id="delete-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Delete Trips?</h3>
+                <p>Are you sure you want to remove the selected trips? This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel" id="modal-cancel">Cancel</button>
+                    <button class="modal-btn delete" id="modal-confirm">Delete</button>
+                </div>
+            </div>
+        </div>
+
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
