@@ -97,7 +97,14 @@ header img {
     align-items: center;
     padding: 20px;
     text-align: center;
-    padding-bottom: 80px;
+    
+    /* FIX: Increase padding-bottom to clear the fixed nav bar */
+    /* The nav bar is roughly 70-80px tall, so 100px is safe */
+    padding-bottom: 100px; 
+    
+    /* Ensure content scrolls properly */
+    overflow-y: auto;
+    width: 100%;
 }
 
 .logo-section {

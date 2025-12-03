@@ -68,13 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
                 
+                // INJECTED: Add click listener to the button inside this specific card
                 const selectBtn = card.querySelector('.select-btn');
                 selectBtn.addEventListener('click', () => {
-                    // Save the specific flight object to session storage
+                    // 1. Save for the Ticket Page (Session only)
                     sessionStorage.setItem('bookedFlight', JSON.stringify(flight));
-                    
-                    // Save the dates we picked earlier
                     sessionStorage.setItem('flightDate', document.getElementById('res-depart-date').value);
+
+                    // 2. Save to Itinerary (Permanent Local Storage)
+                    // Get existing trips or initialize empty array
+                    const myTrips = JSON.parse(localStorage.getItem('myTrips') || '[]');
+                    
+                    // Add the date to the flight object so we remember when it is
+                    flight.travelDate = document.getElementById('res-depart-date').value;
+                    
+                    // Add to array and save back to storage
+                    myTrips.push(flight);
+                    localStorage.setItem('myTrips', JSON.stringify(myTrips));
                     
                     // Redirect to the ticket page
                     window.location.href = 'ticket.html';
