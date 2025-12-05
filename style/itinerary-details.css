@@ -111,8 +111,16 @@ h1 {
 
 /* --- Main Content Styles --- */
 .details-content {
-    align-items: stretch;
+    /* FIX: Switch to block layout to ensure scrolling works properly */
+    display: block;
     text-align: left;
+    
+    /* Ensure it fills the container and scrolls */
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 20px;
+    padding-bottom: 100px;
 }
 
 .day-header {
