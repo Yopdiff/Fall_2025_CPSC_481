@@ -234,3 +234,16 @@ header img {
     font-weight: 600;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
+
+.save-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2ecc71;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    z-index: 9999;
+}

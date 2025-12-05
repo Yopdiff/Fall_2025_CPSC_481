@@ -53,6 +53,13 @@
             <button id="add-itinerary-item" class="add-activity-btn">
                 <i class="fas fa-plus"></i> Add Activity
             </button>
+            <!-- Hidden fallback inputs for JS compatibility -->
+            <input type="text" id="item-input" style="display:none;">
+            <select id="day-select" style="display:none;">
+            <option value="1">Day 1</option>
+            </select>
+            <button id="add-item-btn" style="display:none;">hidden-fallback</button>
+            <div id="itinerary-container"></div>
         </main>
 
         <nav class="bottom-nav">
@@ -78,8 +85,8 @@
 
     <!-- ADDED: Leaflet JS and Map Initialization -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="itinerary-details.js"></script>
     <script src="script.js"></script>
+    <script src="itinerary-details.js"></script>
     <script src="search.js"></script>
     
     <script>
