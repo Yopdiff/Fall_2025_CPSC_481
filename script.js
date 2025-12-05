@@ -4,41 +4,40 @@ const btnShare = document.getElementById('tab-share');
 const btnSearch = document.getElementById('tab-search');
 const contentArea = document.getElementById('main-content');
 
-// 2. ADD EVENT LISTENERS
-btnItinerary.addEventListener('click', () => {
-    setActiveTab(btnItinerary);
-    // Logic to show Itinerary content goes here
-    console.log("Switched to Itinerary");
-});
+// 2. ADD EVENT LISTENERS (safely)
+if (btnItinerary) {
+    btnItinerary.addEventListener('click', () => {
+        setActiveTab(btnItinerary);
+        console.log("Switched to Itinerary");
+    });
+}
 
-btnShare.addEventListener('click', () => {
-    setActiveTab(btnShare);
-    console.log("Switched to Share");
-});
+if (btnShare) {
+    btnShare.addEventListener('click', () => {
+        setActiveTab(btnShare);
+    });
+}
 
-btnSearch.addEventListener('click', () => {
-    setActiveTab(btnSearch);
-    // In the future, this will swap the content to the city grid
-    console.log("Switched to Search");
-});
+if (btnSearch) {
+    btnSearch.addEventListener('click', () => {
+        setActiveTab(btnSearch);
+        console.log("Switched to Search");
+    });
+}
 
 // 3. HELPER FUNCTION
 function setActiveTab(activeBtn) {
-    // Remove 'active' class from all buttons
     const allBtns = document.querySelectorAll('.tab-btn');
     allBtns.forEach(btn => {
         btn.classList.remove('active');
     });
-
-    // Add 'active' class to the clicked button
     activeBtn.classList.add('active');
 }
 
+// 4. FAB + GLOBAL UI SETUP
 document.addEventListener('DOMContentLoaded', () => {
     const allBtns = document.querySelectorAll('.tab-btn');
-    allBtns.forEach(btn => {
-        btn.classList.remove('active');
-    });
+    allBtns.forEach(btn => btn.classList.remove('active'));
 
     const fabContainer = document.querySelector('.fab-container');
     const fabBtn = document.getElementById('fab-btn');
@@ -56,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-// GLOBAL HELPERS (exposed outside DOM load)
+
+// 5. GLOBAL HELPERS (usable everywhere)
 
 // Load trips from localStorage
 function loadTrips() {
@@ -68,7 +68,7 @@ function saveTrips(trips) {
     localStorage.setItem('myTrips', JSON.stringify(trips));
 }
 
-// Simple UI feedback: show small system status message (heuristic fix)
+// UI feedback message
 function showStatus(msg) {
     const status = document.createElement('div');
     status.className = "save-status";

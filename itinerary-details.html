@@ -90,7 +90,7 @@
     <script src="search.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('load', () => {
             // YYC Coordinates: 51.1215, -114.0076
             const map = L.map('mini-map', {
                 zoomControl: false,
@@ -105,9 +105,12 @@
             }).addTo(map);
 
             L.marker([51.1215, -114.0076]).addTo(map)
-                .bindPopup('<b>Move to YYC</b><br>Departure Point')
-                .openPopup();
-        });
+                .bindPopup('<b>Move to YYC</b><br>Departure Point');
+                
+                setTimeout(() => {
+                    map.invalidateSize(true);
+                }, 300);
+            });
     </script>
 </body>
 </html>
