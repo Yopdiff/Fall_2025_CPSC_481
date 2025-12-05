@@ -44,12 +44,26 @@ body.delete-mode .trip-wrapper {
 
 /* --- Bottom Left Trash FAB --- */
 .delete-confirm-btn {
-    position: fixed;
+    /* CHANGED: Use absolute to keep it inside the #mobile-container */
+    position: absolute; 
     left: 16px;
     bottom: 90px;
     z-index: 20;
     background-color: #95a5a6; /* Grey by default */
     transition: background-color 0.3s, transform 0.3s;
+    
+    /* Ensure standard FAB size/shape if not defined elsewhere */
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 
 .delete-confirm-btn.hidden {
