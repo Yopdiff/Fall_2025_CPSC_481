@@ -184,3 +184,27 @@ function viewTrip(index) {
         window.location.href = 'itinerary-details.html';
     }
 }
+// ADD NEW TRIP HANDLER (vertical prototype functionality)
+document.getElementById('fab-btn').addEventListener('click', () => {
+    const trips = loadTrips();
+
+    // Default trip object (minimal, safe)
+    const newTrip = {
+        airline: "Custom Trip",
+        originCode: "YYC",
+        destinationCode: "JFK",
+        travelDate: new Date().toISOString(),
+        departTime: "10:00",
+        arrivalTime: "16:00",
+        duration: "6h",
+        stops: 0,
+        amenities: ["WiFi"],
+        activities: []    // ← Important heuristic fix
+    };
+
+    trips.push(newTrip);
+    saveTrips(trips);
+
+    showStatus("Trip added");   // ← Visibility of system status
+    console.log("Trip saved to localStorage:", newTrip);
+});
