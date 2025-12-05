@@ -56,3 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// GLOBAL HELPERS (exposed outside DOM load)
+
+// Load trips from localStorage
+function loadTrips() {
+    return JSON.parse(localStorage.getItem('myTrips') || '[]');
+}
+
+// Save trips to localStorage
+function saveTrips(trips) {
+    localStorage.setItem('myTrips', JSON.stringify(trips));
+}
+
+// Simple UI feedback: show small system status message (heuristic fix)
+function showStatus(msg) {
+    const status = document.createElement('div');
+    status.className = "save-status";
+    status.textContent = msg;
+    document.body.appendChild(status);
+    setTimeout(() => status.remove(), 1200);
+}
