@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (fabContainer && fabBtn) {
         fabBtn.addEventListener('click', (event) => {
+            // NEW: If in special mode, let the page-specific script handle it (don't toggle menu)
+            if (document.body.classList.contains('delete-mode') || document.body.classList.contains('edit-mode')) {
+                return;
+            }
+
             event.preventDefault();
             fabContainer.classList.toggle('open');
         });
@@ -70,9 +75,10 @@ function saveTrips(trips) {
 
 // UI feedback message
 function showStatus(msg) {
+    const container = document.getElementById('mobile-container') || document.body;
     const status = document.createElement('div');
     status.className = "save-status";
     status.textContent = msg;
-    document.body.appendChild(status);
+    container.appendChild(status);
     setTimeout(() => status.remove(), 1200);
 }
