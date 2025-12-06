@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Settings – Roam Together Tours</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div id="mobile-container">
+
+        <!-- Header like your PDF (Paris, dates, back, bell) -->
+        <header class="screen-header">
+            <button class="header-back-btn" type="button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-trip-text">
+                <div class="header-trip-city">Paris</div>
+                <div class="header-trip-dates">2025, OCT 13 – 16</div>
+            </div>
+            <button class="header-bell-btn" type="button">
+                <i class="fas fa-bell"></i>
+            </button>
+        </header>
+
+        <main class="content settings-content">
+
+            <h1 class="settings-main-title">Notifications Settings</h1>
+
+            <div class="settings-list">
+
+                <div class="settings-row">
+                    <span class="settings-label">Flights</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notify-flights">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <span class="settings-label">Hotels</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notify-hotels">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <span class="settings-label">Suggestions</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notify-suggestions">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <span class="settings-label">Local Alerts</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notify-local">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- Bottom navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="favourites.html" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="settings.html" class="nav-item active">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

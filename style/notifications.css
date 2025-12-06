@@ -1,0 +1,109 @@
+/* Header Title Adjustment */
+header h1 {
+    font-size: 1.2rem;
+    color: #2C3E50;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 44px; /* Balance the back button width to center title */
+}
+
+/* Content Area */
+.notifications-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #f0f2f5;
+    align-items: stretch;
+}
+
+/* Notification Card */
+.notification-card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    /* Removed default border to let risk classes handle it */
+    border: 1px solid rgba(0,0,0,0.05); 
+}
+
+.notification-card:active {
+    transform: scale(0.98);
+}
+
+/* RISK LEVELS - Full Border Indicators */
+.risk-red {
+    border: 2px solid #e74c3c;
+    background-color: #fff5f5; /* Slight red tint background */
+}
+
+.risk-yellow {
+    border: 2px solid #f1c40f;
+    background-color: #fffff0; /* Slight yellow tint background */
+}
+
+.risk-green {
+    border: 2px solid #2ecc71;
+    background-color: #f0fff4; /* Slight green tint background */
+}
+
+/* Icons */
+.notif-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.flight-type .notif-icon {
+    background-color: #3498db; /* Blue */
+}
+
+.hotel-type .notif-icon {
+    background-color: #9b59b6; /* Purple */
+}
+
+.suggestion-type .notif-icon {
+    background-color: #f1c40f; /* Yellow */
+}
+
+.alert-type .notif-icon {
+    background-color: #e74c3c; /* Red */
+}
+
+/* Text Details */
+.notif-details {
+    flex-grow: 1;
+}
+
+.notif-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #2C3E50;
+    font-weight: 700;
+}
+
+.notif-details p {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    line-height: 1.4;
+}
+
+.notif-details .time {
+    font-size: 0.75rem;
+    color: #bdc3c7;
+    display: block;
+    text-align: right;
+    font-style: italic;
+}
