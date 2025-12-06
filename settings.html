@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings – Roam Together Tours</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div id="mobile-container">
+        <header class="screen-header">
+            <div class="logo-title">
+                <img src="public/logo.png" alt="Roam Together Tours" class="logo-small">
+                <span>Settings</span>
+            </div>
+        </header>
+
+        <main class="content settings-content">
+
+            <section class="settings-section">
+                <h2>Appearance</h2>
+                <div class="settings-row">
+                    <div class="settings-text">
+                        <h3>Dark mode</h3>
+                        <p>Use a darker background for low light.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-dark-mode">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Notifications</h2>
+                <div class="settings-row">
+                    <div class="settings-text">
+                        <h3>Trip alerts</h3>
+                        <p>Get reminders before flights and activities.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-notifications">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Account</h2>
+                <div class="settings-row">
+                    <div class="settings-text">
+                        <h3>Profile</h3>
+                        <p>Manage basic traveller details (placeholder).</p>
+                    </div>
+                    <button class="settings-link-btn" type="button">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="favourites.html" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="settings.html" class="nav-item active">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
