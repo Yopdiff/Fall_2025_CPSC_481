@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/notifications.css">
+</head>
+<body>
+    <div id="mobile-container">
+        <header>
+            <button class="back-btn" id="back-btn" aria-label="Go back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <img src="./public/logo.png" alt="Roam Together Tours logo">
+        </header>
+
+        <main class="content notifications-content">
+            <!-- 1. Flight Notification -->
+            <div class="notification-card flight-type">
+                <div class="notif-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <div class="notif-details">
+                    <h3>Flight Update</h3>
+                    <p>Your flight AC123 to LAX is delayed by 30 mins. New departure time: 10:30 AM.</p>
+                    <span class="time">10 mins ago</span>
+                </div>
+            </div>
+
+            <!-- 2. Hotel Notification -->
+            <div class="notification-card hotel-type">
+                <div class="notif-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="notif-details">
+                    <h3>Check-in Ready</h3>
+                    <p>Your room at Hotel Arts is ready for check-in. Mobile key available.</p>
+                    <span class="time">1 hour ago</span>
+                </div>
+            </div>
+
+            <!-- 3. Suggestion Notification -->
+            <div class="notification-card suggestion-type">
+                <div class="notif-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="notif-details">
+                    <h3>Suggestion</h3>
+                    <p>Try "The Keg" for dinner! It's highly rated and only 5 mins walk from your hotel.</p>
+                    <span class="time">2 hours ago</span>
+                </div>
+            </div>
+
+            <!-- 4. Local Alert Notification -->
+            <div class="notification-card alert-type">
+                <div class="notif-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notif-details">
+                    <h3>Local Alert</h3>
+                    <p>Heavy traffic expected downtown due to the holiday parade. Plan extra travel time.</p>
+                    <span class="time">5 hours ago</span>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- ADDED: Script for dynamic loading -->
+    <script src="notifications.js"></script>
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>

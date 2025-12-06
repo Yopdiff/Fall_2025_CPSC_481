@@ -1,0 +1,133 @@
+{
+  "YVR": [
+    {
+      "type": "alert",
+      "title": "Heavy Rainfall Warning",
+      "message": "Continuous heavy rain expected for the next 48 hours. Localized flooding possible in low-lying areas.",
+      "time": "2 hours ago",
+      "risk": "yellow"
+    },
+    {
+      "type": "suggestion",
+      "title": "Indoor Activity: Aquarium",
+      "message": "Perfect weather to visit the Vancouver Aquarium in Stanley Park.",
+      "time": "4 hours ago",
+      "risk": "green"
+    },
+    {
+      "type": "alert",
+      "title": "Wildlife Alert: Stanley Park",
+      "message": "Aggressive coyote activity reported near the seawall. Keep pets on leash.",
+      "time": "1 day ago",
+      "risk": "yellow"
+    }
+  ],
+  "BER": [
+    {
+      "type": "alert",
+      "title": "Public Transport Strike",
+      "message": "BVG strike announced for Friday. S-Bahn and U-Bahn services will be severely limited.",
+      "time": "5 hours ago",
+      "risk": "red"
+    },
+    {
+      "type": "suggestion",
+      "title": "Museum Island Event",
+      "message": "Long Night of Museums is happening this Saturday. Tickets selling fast.",
+      "time": "1 day ago",
+      "risk": "green"
+    }
+  ],
+  "NRT": [
+    {
+      "type": "alert",
+      "title": "Seismic Activity Alert",
+      "message": "Minor tremor (Magnitude 3.2) detected off the coast. No tsunami threat.",
+      "time": "1 hour ago",
+      "risk": "yellow"
+    },
+    {
+      "type": "alert",
+      "title": "Typhoon Warning",
+      "message": "Typhoon approaching. Public transport may be suspended tomorrow.",
+      "time": "30 mins ago",
+      "risk": "red"
+    },
+    {
+      "type": "suggestion",
+      "title": "Cherry Blossom Viewing",
+      "message": "Ueno Park is currently at full bloom! Expect large crowds.",
+      "time": "5 hours ago",
+      "risk": "green"
+    }
+  ],
+  "JFK": [
+    {
+      "type": "alert",
+      "title": "Subway Delays",
+      "message": "Severe delays on the A and E lines due to signal problems at Queens Plaza.",
+      "time": "20 mins ago",
+      "risk": "yellow"
+    },
+    {
+      "type": "alert",
+      "title": "Air Quality Alert",
+      "message": "Unhealthy air quality levels due to wildfire smoke. Sensitive groups should limit outdoor exposure.",
+      "time": "3 hours ago",
+      "risk": "yellow"
+    },
+    {
+      "type": "suggestion",
+      "title": "Broadway Week",
+      "message": "2-for-1 tickets available for select Broadway shows this week only.",
+      "time": "1 day ago",
+      "risk": "green"
+    }
+  ],
+  "CDG": [
+    {
+      "type": "alert",
+      "title": "Metro Strike",
+      "message": "Public transport strike planned for tomorrow. Expect severe delays on Line 1 and RER B.",
+      "time": "3 hours ago",
+      "risk": "red"
+    },
+    {
+      "type": "alert",
+      "title": "Heatwave Warning",
+      "message": "Canicule alert: Temperatures expected to reach 35°C. Stay hydrated and avoid midday sun.",
+      "time": "6 hours ago",
+      "risk": "yellow"
+    },
+    {
+      "type": "suggestion",
+      "title": "Louvre Late Night",
+      "message": "The Louvre is open until 9:45 PM this Friday. Less crowds expected.",
+      "time": "2 days ago",
+      "risk": "green"
+    }
+  ],
+  "YYZ": [
+    {
+      "type": "alert",
+      "title": "Winter Storm Watch",
+      "message": "15-20cm of snow expected overnight. Travel conditions will be hazardous.",
+      "time": "4 hours ago",
+      "risk": "red"
+    },
+    {
+      "type": "alert",
+      "title": "Gardiner Expressway Closure",
+      "message": "Gardiner Expressway closed this weekend for maintenance between Dufferin and Strachan.",
+      "time": "1 day ago",
+      "risk": "yellow"
+    },
+    {
+      "type": "suggestion",
+      "title": "TIFF Festival",
+      "message": "King Street is pedestrian-only this weekend for the film festival.",
+      "time": "2 days ago",
+      "risk": "green"
+    }
+  ]
+}

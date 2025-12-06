@@ -10,7 +10,8 @@ function initializeSchedule() {
     // 1. Try to get data, or use a default fallback for testing
     let flight = {
         departDate: new Date().toISOString().split('T')[0], // Today
-        returnDate: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0] // 2 days later
+        returnDate: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0], // 2 days later
+        destinationCode: 'YYC' // Default
     };
 
     const flightData = sessionStorage.getItem('bookedFlight');
@@ -70,7 +71,7 @@ function initializeSchedule() {
                     <div class="location-left">
                         <i class="fas fa-plane-departure location-icon"></i>
                         <div class="location-text">
-                            <h3>Move to YYC</h3>
+                            <h3>Move to ${flight.destinationCode || 'YYC'}</h3>
                             <span>Departure Point</span>
                         </div>
                     </div>
@@ -82,7 +83,6 @@ function initializeSchedule() {
                 <div id="mini-map" class="mini-map-container"></div>
                 
                 <!-- ADDED: View Ticket Button -->
-                <!-- UPDATED: Add ?mode=view parameter -->
                 <button class="view-ticket-btn" onclick="window.location.href='ticket.html?mode=view'">
                     <i class="fas fa-ticket-alt"></i> View Ticket
                 </button>
@@ -99,10 +99,89 @@ function initializeSchedule() {
         modalSelect.appendChild(option);
     }
     
+    // LOAD SAVED ACTIVITIES
+    loadSavedActivities(flight);
+
     // Initialize map after DOM injection
     initMap();
     // Restart countdown since we just re-injected the timer HTML
     startCountdown();
+}
+
+function addActivityToSchedule(day, type, name) {
+    // 1. Render to DOM
+    renderActivityItem(day, type, name);
+
+    // 2. Save to LocalStorage
+    saveActivity(day, type, name);
+}
+
+function renderActivityItem(day, type, name) {
+    let daySection = document.getElementById(`day-section-${day}`);
+    
+    // Fallback if day section doesn't exist (shouldn't happen with init logic)
+    if (!daySection) {
+        const container = document.getElementById('itinerary-schedule');
+        daySection = document.createElement('div');
+        daySection.id = `day-section-${day}`;
+        daySection.innerHTML = `<h2 class="day-header">Day ${day}</h2>`;
+        container.appendChild(daySection);
+    }
+
+    const item = document.createElement('div');
+    item.className = 'itinerary-item';
+    
+    let iconClass = 'fa-bed';
+    let label = 'Accommodation';
+    
+    if (type === 'restaurant') { iconClass = 'fa-utensils'; label = 'Restaurant'; }
+    if (type === 'event') { iconClass = 'fa-calendar-alt'; label = 'Event'; }
+
+    item.innerHTML = `
+        <div class="item-icon">
+            <i class="fas ${iconClass}"></i>
+        </div>
+        <div class="item-details">
+            <h4>${label}</h4>
+            <p>${name}</p>
+        </div>
+    `;
+
+    daySection.appendChild(item);
+}
+
+// --- STORAGE HELPERS ---
+
+function getStorageKey(flight) {
+    // Create a unique key based on destination and date
+    // e.g. "activities_YYC_2025-12-12"
+    const dest = flight.destinationCode || 'YYC';
+    const date = flight.departDate || 'TBD';
+    return `activities_${dest}_${date}`;
+}
+
+function saveActivity(day, type, name) {
+    const flightData = sessionStorage.getItem('bookedFlight');
+    // If no flight data, we can't save reliably to a specific trip
+    if (!flightData) return;
+    
+    const flight = JSON.parse(flightData);
+    const key = getStorageKey(flight);
+    
+    const activities = JSON.parse(localStorage.getItem(key) || '[]');
+    
+    activities.push({ day, type, name });
+    
+    localStorage.setItem(key, JSON.stringify(activities));
+}
+
+function loadSavedActivities(flight) {
+    const key = getStorageKey(flight);
+    const activities = JSON.parse(localStorage.getItem(key) || '[]');
+    
+    activities.forEach(act => {
+        renderActivityItem(act.day, act.type, act.name);
+    });
 }
 
 function initMap() {
@@ -168,39 +247,6 @@ window.selectType = function(btn) {
     document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentType = btn.dataset.type;
-}
-
-function addActivityToSchedule(day, type, name) {
-    let daySection = document.getElementById(`day-section-${day}`);
-    
-    if (!daySection) {
-        const container = document.getElementById('itinerary-schedule');
-        daySection = document.createElement('div');
-        daySection.id = `day-section-${day}`;
-        daySection.innerHTML = `<h2 class="day-header">Day ${day}</h2>`;
-        container.appendChild(daySection);
-    }
-
-    const item = document.createElement('div');
-    item.className = 'itinerary-item';
-    
-    let iconClass = 'fa-bed';
-    let label = 'Accommodation';
-    
-    if (type === 'restaurant') { iconClass = 'fa-utensils'; label = 'Restaurant'; }
-    if (type === 'event') { iconClass = 'fa-calendar-alt'; label = 'Event'; }
-
-    item.innerHTML = `
-        <div class="item-icon">
-            <i class="fas ${iconClass}"></i>
-        </div>
-        <div class="item-details">
-            <h4>${label}</h4>
-            <p>${name}</p>
-        </div>
-    `;
-
-    daySection.appendChild(item);
 }
 
 function startCountdown() {

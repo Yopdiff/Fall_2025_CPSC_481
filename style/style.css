@@ -236,14 +236,34 @@ header img {
 }
 
 .save-status {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: absolute; /* Changed from fixed to absolute */
+    bottom: 100px;      /* Position above the bottom nav */
+    left: 50%;
+    transform: translateX(-50%);
     background: #2ecc71;
     color: #fff;
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: 20px; /* More rounded */
     font-size: 0.85rem;
     opacity: 0.9;
     z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Edit Mode Styles */
+body.edit-mode .flight-card {
+    border: 2px dashed #3498db; /* Blue dashed border */
+    opacity: 0.9;
+}
+
+body.edit-mode .flight-card::after {
+    content: '\f044'; /* FontAwesome Edit Icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #3498db;
+    font-size: 1.2rem;
 }
