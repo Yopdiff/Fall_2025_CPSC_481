@@ -5,113 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roam Together Tours</title>
 
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/search.css">
     <link rel="stylesheet" href="style/destination.css">
     <link rel="stylesheet" href="style/flight-results.css">
-    <link rel="stylesheet" href="style/delete-mode.css">
 </head>
 <body>
 
-<div id="mobile-container">
+    <div id="mobile-container">
 
-    <!-- Header -->
-    <header>
-        <img src="./public/logo.png" alt="Roam Together Tours logo">
-    </header>
+      
+        <header>
+            <img src="./public/logo.png" alt="Roam Together Tours Logo">
+        </header>
 
-    <!-- Tabs -->
-    <div class="tab-bar">
-        <a href="itinerary.html" class="tab-btn active" id="tab-itinerary">Itinerary</a>
-        <a href="share.html" class="tab-btn" id="tab-share">Share</a>
-        <a href="search.html" class="tab-btn" id="tab-search">Search</a>
-    </div>
-
-    <!-- Main -->
-    <main class="content" id="main-content">
-        <div id="itinerary-list" style="width:100%; display:flex; flex-direction:column; gap:15px;"></div>
-
-        <a href="search.html" class="add-trip-box">
-            <span class="add-trip-label">Start a new tour</span>
-        </a>
-    </main>
-
-    <!-- Hidden Delete FAB -->
-    <button class="fab-btn delete-confirm-btn hidden" id="delete-confirm-fab">
-        <i class="fas fa-trash"></i>
-    </button>
-
-    <!-- NEW PLUS BUTTON -->
-    <button class="fab-plus" id="fabPlus">+</button>
-
-    <!-- POPUP MENU -->
-    <div class="fab-menu hidden" id="fabMenu">
-        <div class="fab-menu-card">
-            <p class="fab-menu-title">What would you like to do?</p>
-
-            <button class="fab-menu-item" onclick="location.href='itinerary-details.html'">
-                Add to itinerary
-            </button>
-
-            <button class="fab-menu-item" onclick="location.href='edit-itinerary.html'">
-                Edit itinerary
-            </button>
-
-            <button class="fab-menu-item" id="fabDelete">
-                Delete itinerary
-            </button>
-
-            <button class="fab-menu-item" onclick="location.href='download.html'">
-                Download
-            </button>
+       
+        <div class="tab-bar">
+            <a href="itinerary.html" class="tab-btn" id="tab-itinerary">Itinerary</a>
+            <a href="share.html" class="tab-btn" id="tab-share">Share</a>
+            <a href="search.html" class="tab-btn" id="tab-search">Search</a>
         </div>
+
+      
+        <main class="content" id="main-content">
+            <div class="logo-section">
+                <img src="./public/logo.png" alt="Roam Together Tours Logo">
+            </div>
+
+            <a href="search.html" class="add-trip-box">
+                <span class="add-trip-label">Start a new tour</span>
+            </a>
+        </main>
+
+        
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+
+            <a href="map.html" class="nav-item">
+                <i class="fas fa-globe-americas"></i>
+                <span>Maps</span>
+            </a>
+
+            <a href="favourites.html" class="nav-item">
+                <i class="far fa-heart"></i>
+                <span>Favourites</span>
+            </a>
+
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-sliders-h"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
     </div>
 
-    <!-- Bottom Nav -->
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="map.html" class="nav-item">
-            <i class="fas fa-globe-americas"></i>
-            <span>Maps</span>
-        </a>
-        <a href="favourites.html" class="nav-item">
-            <i class="far fa-heart"></i>
-            <span>Favourites</span>
-        </a>
-        <a href="settings.html" class="nav-item">
-            <i class="fas fa-sliders-h"></i>
-            <span>Settings</span>
-        </a>
-    </nav>
-
-</div>
-
-<script src="script.js"></script>
-<script src="itinerary.js"></script>
-
-<script>
-/* ---- FIXED FAB MENU SCRIPT ---- */
-document.addEventListener('DOMContentLoaded', () => {
-    const fab = document.getElementById('fabPlus');
-    const menu = document.getElementById('fabMenu');
-
-    fab.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.classList.toggle('hidden');
-    });
-
-    menu.addEventListener('click', (e) => e.stopPropagation());
-
-    document.addEventListener('click', () => {
-        menu.classList.add('hidden');
-    });
-});
-</script>
-
+    =
+    <script src="script.js"></script>
 </body>
 </html>
