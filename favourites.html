@@ -22,21 +22,37 @@
         </header>
 
         <main class="content">
+
+            <h2 style="text-align: center; width: 100%; margin-bottom: 15px; color: #2C3E50;">Saved Itineraries</h2>
+
+            <!-- iOS Style Toggle Switch -->
+            <div class="toggle-container" style="display: flex; justify-content: center; margin-bottom: 20px; width: 100%;">
+                <div class="ios-toggle-wrapper" style="background: #e0e0e0; border-radius: 20px; padding: 4px; display: flex; position: relative; width: 200px; height: 40px;">
+                    <div id="toggle-bg" style="position: absolute; left: 4px; top: 4px; width: 96px; height: 32px; background: white; border-radius: 16px; transition: transform 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></div>
+                    <button id="btn-upcoming" style="flex: 1; border: none; background: transparent; z-index: 1; cursor: pointer; font-weight: bold; color: #2C3E50; font-size: 0.9rem;">Upcoming</button>
+                    <button id="btn-past" style="flex: 1; border: none; background: transparent; z-index: 1; cursor: pointer; font-weight: normal; color: #666; font-size: 0.9rem;">Past</button>
+                </div>
+            </div>
+
+            <!-- Upcoming Trips -->
+            <section id="upcoming-view" class="fav-section" style="width: 100%;">
+                <div id="upcoming-trips-list" class="fav-list" style="width: 100%; display: flex; flex-direction: column; gap: 15px;">
+                    <!-- Filled by favourites.js -->
+                </div>
+            </section>
+
+            <!-- Past Trips (Hidden by default) -->
+            <section id="past-view" class="fav-section hidden" style="width: 100%; display: none;">
+                <div id="past-trips-list" class="fav-list" style="width: 100%; display: flex; flex-direction: column; gap: 15px;">
+                    <!-- Filled by favourites.js -->
+                </div>
+            </section> 
             
-            <h2 style="text-align: left; width: 100%; margin-bottom: 15px; color: #2C3E50; padding-left: 5px;">Saved Itineraries</h2>
             <!-- Segmented control: Saved vs Offline Itinerary
             <div class="segmented-tabs">
                 <button id="tab-saved" class="seg-tab active">Saved trips</button>
                 <button id="tab-offline" class="seg-tab">Offline itinerary</button>
             </div> -->
-
-            <!-- Saved trips list -->
-            <section id="saved-view" class="fav-section">
-                <div id="saved-trips-list" class="fav-list">
-                    <!-- Filled by favourites.js -->
-                </div>
-            </section>
-
             <!-- Offline itineraries
             <section id="offline-view" class="fav-section hidden">
                 <p class="empty-message">
