@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Trips – Roam Together Tours</title>
+    <title>Favorites</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/style.css">
+    <!-- Add this line to get the card styles -->
+    <link rel="stylesheet" href="style/flight-results.css">
 </head>
 <body>
     <div id="mobile-container">
 
         <!-- Header -->
-        <header class="screen-header">
-            <div class="logo-title">
-                <img src="public/logo.png" alt="Roam Together Tours" class="logo-small">
-                <span>Saved trips</span>
-            </div>
+        <header>
+            <button class="back-btn" id="back-btn" aria-label="Go back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <img src="./public/logo.png" alt="Roam Together Tours logo">
         </header>
 
         <main class="content">
-
-            <!-- Segmented control: Saved vs Offline Itinerary -->
+            
+            <h2 style="text-align: left; width: 100%; margin-bottom: 15px; color: #2C3E50; padding-left: 5px;">Saved Itineraries</h2>
+            <!-- Segmented control: Saved vs Offline Itinerary
             <div class="segmented-tabs">
                 <button id="tab-saved" class="seg-tab active">Saved trips</button>
                 <button id="tab-offline" class="seg-tab">Offline itinerary</button>
-            </div>
+            </div> -->
 
             <!-- Saved trips list -->
             <section id="saved-view" class="fav-section">
@@ -34,7 +37,7 @@
                 </div>
             </section>
 
-            <!-- Offline itineraries -->
+            <!-- Offline itineraries
             <section id="offline-view" class="fav-section hidden">
                 <p class="empty-message">
                     You have not downloaded any itineraries yet.
@@ -43,7 +46,7 @@
                     Use “Download itinerary” from your trip to make it available here for offline use.
                 </p>
                 <div id="offline-list" class="fav-list"></div>
-            </section>
+            </section> -->
 
         </main>
 
@@ -68,6 +71,7 @@
         </nav>
     </div>
 
+    <script src="search.js"></script>
     <script src="script.js"></script>
     <script src="favourites.js"></script>
 </body>
