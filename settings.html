@@ -7,22 +7,17 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/settings.css">
 </head>
 <body>
     <div id="mobile-container">
 
         <!-- Header like your PDF (Paris, dates, back, bell) -->
-        <header class="screen-header">
-            <button class="header-back-btn" type="button" onclick="history.back()">
+        <header>
+            <button class="back-btn" id="back-btn" aria-label="Go back">
                 <i class="fas fa-arrow-left"></i>
             </button>
-            <div class="header-trip-text">
-                <div class="header-trip-city">Paris</div>
-                <div class="header-trip-dates">2025, OCT 13 – 16</div>
-            </div>
-            <button class="header-bell-btn" type="button">
-                <i class="fas fa-bell"></i>
-            </button>
+            <img src="./public/logo.png" alt="Roam Together Tours logo">
         </header>
 
         <main class="content settings-content">
@@ -88,7 +83,8 @@
         </nav>
 
     </div>
-
+    <script src="script.js"></script>
+    <script src="search.js"></script>
     <script src="settings.js"></script>
 </body>
 </html>
