@@ -1,13 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Parse URL parameters
     const params = new URLSearchParams(window.location.search);
-    const destinationQuery = params.get('destination') || 'Vancouver'; // Default fallback
-    const departDate = params.get('depart');
-    const returnDate = params.get('return');
+    const destinationQuery = params.get('destination') || 'Vancouver';
+    const departDateParam = params.get('depart');
+    const returnDateParam = params.get('return');
 
-    // 2. Set the inputs to the passed dates (or defaults)
-    if (departDate) document.getElementById('res-depart-date').value = departDate;
-    if (returnDate) document.getElementById('res-return-date').value = returnDate;
+    // 2. Date Input Setup
+    const departInput = document.getElementById('res-depart-date');
+    const returnInput = document.getElementById('res-return-date');
+
+    // Set 'min' to today to prevent past dates
+    const today = new Date().toISOString().split('T')[0];
+    departInput.min = today;
+    returnInput.min = today;
+
+    // Set values from URL or default
+    if (departDateParam) departInput.value = departDateParam;
+    if (returnDateParam) returnInput.value = returnDateParam;
+
+    // Ensure return date is not before depart date
+    departInput.addEventListener('change', () => {
+        returnInput.min = departInput.value;
+        if (returnInput.value < departInput.value) {
+            returnInput.value = departInput.value;
+        }
+    });
 
     // Update Title
     document.getElementById('results-title').textContent = `To ${destinationQuery}`;
@@ -17,9 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('flight-list');
-            container.innerHTML = ''; // Clear loading spinner
+            container.innerHTML = '';
 
-            // Filter logic: Check if destination name or code matches
             const filteredFlights = data.flights.filter(flight => {
                 const q = destinationQuery.toLowerCase();
                 return flight.destination.toLowerCase().includes(q) || 
@@ -36,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card = document.createElement('div');
                 card.className = 'flight-card';
                 
-                // Calculate duration or use string from JSON
-                // Simple HTML structure for the card
                 card.innerHTML = `
                     <div class="flight-card-header">
                         <span class="airline-name">${flight.airline}</span>
@@ -67,34 +81,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="select-btn">Select</button>
                     </div>
                 `;
-                
-                // INJECTED: Add click listener to the button inside this specific card
+
+                // Add Click Listener
                 const selectBtn = card.querySelector('.select-btn');
                 selectBtn.addEventListener('click', () => {
-                    // 1. Save for the Ticket Page (Session only)
-                    sessionStorage.setItem('bookedFlight', JSON.stringify(flight));
-                    sessionStorage.setItem('flightDate', document.getElementById('res-depart-date').value);
+                    // Capture the CURRENT values from the date inputs
+                    const selectedDepart = document.getElementById('res-depart-date').value;
+                    const selectedReturn = document.getElementById('res-return-date').value;
 
-                    // 2. Save to Itinerary (Permanent Local Storage)
-                    // Get existing trips or initialize empty array
+                    if (!selectedDepart || !selectedReturn) {
+                        alert("Please select both departure and return dates.");
+                        return;
+                    }
+
+                    // Update the flight object with the user's selected dates
+                    // We create a copy so we don't modify the original data for other cards
+                    const flightToSave = { 
+                        ...flight, 
+                        departDate: selectedDepart,
+                        returnDate: selectedReturn,
+                        travelDate: selectedDepart // Used for sorting/display in itinerary
+                    };
+
+                    // 1. Save for Ticket Page (Session)
+                    sessionStorage.setItem('bookedFlight', JSON.stringify(flightToSave));
+                    sessionStorage.setItem('flightDate', selectedDepart);
+
+                    // 2. Save to Itinerary (Local Storage)
                     const myTrips = JSON.parse(localStorage.getItem('myTrips') || '[]');
-                    
-                    // Add the date to the flight object so we remember when it is
-                    flight.travelDate = document.getElementById('res-depart-date').value;
-                    
-                    // Add to array and save back to storage
-                    myTrips.push(flight);
+                    myTrips.push(flightToSave);
                     localStorage.setItem('myTrips', JSON.stringify(myTrips));
                     
-                    // Redirect to the ticket page
                     window.location.href = 'ticket.html';
                 });
-                
-                container.appendChild(card);
-            });
-        })
-        .catch(err => {
-            console.error('Error loading flights:', err);
-            document.getElementById('flight-list').innerHTML = '<p>Error loading data.</p>';
+            container.appendChild(card);
         });
+    })
+    .catch(err => {
+        console.error('Error loading flights:', err);
+        document.getElementById('flight-list').innerHTML = '<p>Error loading data.</p>';
+    });
 });

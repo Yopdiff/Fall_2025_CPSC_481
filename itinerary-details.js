@@ -1,127 +1,223 @@
-// This file contains JavaScript for handling the details of the itinerary,
-// including day-by-day schedule and user interactions for adding items.
-
-document.addEventListener('DOMContentLoaded', () => {
-    const itineraryContainer = document.getElementById('itinerary-schedule');
-    const addItemButton = document.getElementById('add-itinerary-item');
-    const itemInput = document.getElementById('item-input');
-    const daySelect = document.getElementById('day-select');
-
-    // Local itinerary structure (used only for rendering)
-    const itineraryData = {
-        days: [
-            { day: 1, items: [] },
-            { day: 2, items: [] },
-            { day: 3, items: [] },
-            { day: 4, items: [] },
-            { day: 5, items: [] },
-        ]
-    };
-
-    // RENDER ITINERARY UI
-    function renderItinerary() {
-        // NEW: Load saved activities from current trip
-        const trips = loadTrips();
-        let currentTripIndex = parseInt(sessionStorage.getItem('currentTripIndex'));
-        if (!Number.isInteger(currentTripIndex)) currentTripIndex = 0;
-
-        itineraryData.days.forEach(day => day.items = []);
-
-        if (Number.isInteger(currentTripIndex) && trips[currentTripIndex] && Array.isArray(trips[currentTripIndex].activities)) {
-            trips[currentTripIndex].activities.forEach(act => {
-                const targetDay = itineraryData.days.find(d => d.day === act.day);
-                if (targetDay) targetDay.items.push(act.text);
-            });
-        }
-
-        itineraryContainer.innerHTML = '';
-
-        // Build DOM
-        itineraryData.days.forEach(day => {
-            const dayDiv = document.createElement('div');
-            dayDiv.classList.add('day');
-            dayDiv.innerHTML = `<h3>Day ${day.day}</h3>`;
-
-            const itemsList = document.createElement('ul');
-            day.items.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.textContent = item;
-                itemsList.appendChild(listItem);
-            });
-
-            dayDiv.appendChild(itemsList);
-            itineraryContainer.appendChild(dayDiv);
-        });
-    }
-
-    // ADD NEW ITINERARY ITEM
-    function addItem() {
-
-    const selectedDay = parseInt(daySelect.value);
-
-    // intuitive fallback input
-    let itemText = prompt("Add an activity:");
-
-    if (!itemText) {
-        showStatus("Cancelled");
-        return;
-    }
-
-    // Load stored trips
-    const trips = loadTrips();
-    let currentTripIndex = parseInt(sessionStorage.getItem('currentTripIndex'));
-    if (!Number.isInteger(currentTripIndex)) currentTripIndex = 0;
-
-    // Validate index
-    if (!Number.isInteger(currentTripIndex) || !trips[currentTripIndex]) {
-        alert("Could not find trip data.");
-        return;
-    }
-
-    // Ensure activities array exists
-    if (!Array.isArray(trips[currentTripIndex].activities)) {
-        trips[currentTripIndex].activities = [];
-    }
-
-    // Store new itinerary activity
-    trips[currentTripIndex].activities.push({
-        day: selectedDay,
-        text: itemText
-    });
-
-    // Save back to localStorage
-    saveTrips(trips);
-
-    // UI feedback (heuristic)
-    showStatus("Activity added");
-
-    // Reset input field
-    itemInput.value = "";
-
-    // Clear local view and re-render
-    itineraryData.days.forEach(day => day.items = []);
-    renderItinerary();
-}
-
-    // EVENT HANDLERS
-    addItemButton.addEventListener('click', addItem);
-
-    // Initial UI paint
-    renderItinerary();
-});
-
-// Countdown Feature 
 document.addEventListener('DOMContentLoaded', () => {
     startCountdown();
+    setupModalHandlers();
+    initializeSchedule(); 
 });
+
+let currentType = 'accommodation';
+
+function initializeSchedule() {
+    // 1. Try to get data, or use a default fallback for testing
+    let flight = {
+        departDate: new Date().toISOString().split('T')[0], // Today
+        returnDate: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0] // 2 days later
+    };
+
+    const flightData = sessionStorage.getItem('bookedFlight');
+    if (flightData) {
+        try {
+            const parsed = JSON.parse(flightData);
+            // Only use if valid dates exist
+            if (parsed.departDate && parsed.returnDate) {
+                flight = parsed;
+            }
+        } catch (e) {
+            console.error("Error parsing flight data, using default.", e);
+        }
+    }
+    
+    // Helper to parse "YYYY-MM-DD" correctly as local time
+    const parseDate = (dateStr) => {
+        if (!dateStr) return new Date();
+        const [y, m, d] = dateStr.split('-');
+        return new Date(y, m - 1, d);
+    };
+
+    const start = parseDate(flight.departDate);
+    const end = parseDate(flight.returnDate);
+    
+    // Calculate difference in days
+    const diffTime = Math.abs(end - start);
+    // Ensure at least 1 day
+    const dayCount = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1);
+
+    const container = document.getElementById('itinerary-schedule');
+    const modalSelect = document.getElementById('modal-day-select');
+    
+    if (!container || !modalSelect) return;
+
+    container.innerHTML = '';
+    modalSelect.innerHTML = '';
+
+    for (let i = 1; i <= dayCount; i++) {
+        // Calculate the date for this specific day
+        const currentDayDate = new Date(start);
+        currentDayDate.setDate(start.getDate() + (i - 1));
+        
+        // Format: "Dec 16"
+        const dateString = currentDayDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+        // 1. Create Day Section
+        const daySection = document.createElement('div');
+        daySection.id = `day-section-${i}`;
+        daySection.innerHTML = `<h2 class="day-header">Day ${i} <span style="font-size: 0.9rem; color: #7f8c8d; font-weight: normal;">- ${dateString}</span></h2>`;
+        
+        // INJECT MAP CARD INTO DAY 1
+        if (i === 1) {
+            const mapCardHTML = `
+            <div class="start-location-card">
+                <div class="location-card-header">
+                    <div class="location-left">
+                        <i class="fas fa-plane-departure location-icon"></i>
+                        <div class="location-text">
+                            <h3>Move to YYC</h3>
+                            <span>Departure Point</span>
+                        </div>
+                    </div>
+                    <div class="countdown-container">
+                        <span class="countdown-label">Departs in</span>
+                        <div class="countdown-time" id="countdown-timer">--d --h --m</div>
+                    </div>
+                </div>
+                <div id="mini-map" class="mini-map-container"></div>
+            </div>`;
+            daySection.innerHTML += mapCardHTML;
+        }
+
+        container.appendChild(daySection);
+
+        // 2. Add Option to Modal Dropdown
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = `Day ${i} (${dateString})`;
+        modalSelect.appendChild(option);
+    }
+    
+    // Initialize map after DOM injection
+    initMap();
+    // Restart countdown since we just re-injected the timer HTML
+    startCountdown();
+}
+
+function initMap() {
+    const mapContainer = document.getElementById('mini-map');
+    if (!mapContainer) return;
+
+    // Check if map is already initialized to avoid Leaflet error
+    if (mapContainer._leaflet_id) return;
+
+    const map = L.map('mini-map', {
+        zoomControl: false,
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false
+    }).setView([51.1215, -114.0076], 11);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    L.marker([51.1215, -114.0076]).addTo(map)
+        .bindPopup('<b>Move to YYC</b><br>Departure Point');
+        
+    setTimeout(() => {
+        map.invalidateSize(true);
+    }, 300);
+}
+
+function setupModalHandlers() {
+    const modal = document.getElementById('activity-modal');
+    const addBtn = document.getElementById('add-itinerary-item');
+    const cancelBtn = document.getElementById('cancel-activity');
+    const saveBtn = document.getElementById('save-activity');
+
+    if(!addBtn) return;
+
+    addBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    saveBtn.addEventListener('click', () => {
+        const day = document.getElementById('modal-day-select').value;
+        const name = document.getElementById('modal-activity-name').value;
+
+        if (!name) {
+            alert("Please enter an activity name.");
+            return;
+        }
+
+        addActivityToSchedule(day, currentType, name);
+        
+        document.getElementById('modal-activity-name').value = '';
+        modal.classList.add('hidden');
+    });
+}
+
+window.selectType = function(btn) {
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentType = btn.dataset.type;
+}
+
+function addActivityToSchedule(day, type, name) {
+    let daySection = document.getElementById(`day-section-${day}`);
+    
+    if (!daySection) {
+        const container = document.getElementById('itinerary-schedule');
+        daySection = document.createElement('div');
+        daySection.id = `day-section-${day}`;
+        daySection.innerHTML = `<h2 class="day-header">Day ${day}</h2>`;
+        container.appendChild(daySection);
+    }
+
+    const item = document.createElement('div');
+    item.className = 'itinerary-item';
+    
+    let iconClass = 'fa-bed';
+    let label = 'Accommodation';
+    
+    if (type === 'restaurant') { iconClass = 'fa-utensils'; label = 'Restaurant'; }
+    if (type === 'event') { iconClass = 'fa-calendar-alt'; label = 'Event'; }
+
+    item.innerHTML = `
+        <div class="item-icon">
+            <i class="fas ${iconClass}"></i>
+        </div>
+        <div class="item-details">
+            <h4>${label}</h4>
+            <p>${name}</p>
+        </div>
+    `;
+
+    daySection.appendChild(item);
+}
 
 function startCountdown() {
     const timerElement = document.getElementById('countdown-timer');
+    if (!timerElement) return; // Safety check
     
-    // Fake departure date (2 days and 5 hours from now)
-    const departureDate = new Date();
-    departureDate.setDate(departureDate.getDate() + 2);
-    departureDate.setHours(departureDate.getHours() + 5);
+    const flightData = sessionStorage.getItem('bookedFlight');
+    let departureDate = new Date();
+    
+    if (flightData) {
+        try {
+            const flight = JSON.parse(flightData);
+            if(flight.departDate && flight.departTime) {
+                departureDate = new Date(`${flight.departDate}T${flight.departTime}`);
+            } else {
+                departureDate.setDate(departureDate.getDate() + 2);
+            }
+        } catch(e) {
+            departureDate.setDate(departureDate.getDate() + 2);
+        }
+    } else {
+        departureDate.setDate(departureDate.getDate() + 2);
+    }
 
     function updateTimer() {
         const now = new Date();
@@ -141,4 +237,3 @@ function startCountdown() {
     updateTimer();          // Run immediately
     setInterval(updateTimer, 60000); // Update every minute
 }
-

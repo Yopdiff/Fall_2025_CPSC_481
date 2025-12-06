@@ -33,7 +33,17 @@ function renderItinerary() {
         card.className = 'flight-card';
         card.style.flex = '1'; // Take remaining space
         
-        const dateDisplay = flight.travelDate ? new Date(flight.travelDate).toLocaleDateString() : 'Date TBD';
+        let dateDisplay = 'Date TBD';
+        if (flight.travelDate) {
+            const [year, month, day] = flight.travelDate.split('-');
+            // Create date using local arguments: new Date(year, monthIndex, day)
+            const localDate = new Date(year, month - 1, day);
+            dateDisplay = localDate.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+        }
 
         card.innerHTML = `
             <div class="flight-card-header">
