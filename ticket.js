@@ -43,4 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         document.getElementById('t-date').textContent = "N/A";
     }
+
+    // Populate Amenities
+    const amenitiesContainer = document.getElementById('t-amenities');
+    if (amenitiesContainer && flight.amenities) {
+        // Center the amenities
+        amenitiesContainer.style.justifyContent = 'center';
+        
+        amenitiesContainer.innerHTML = flight.amenities
+            .map(am => 
+                `<span class="badge" style="background: #e1f5fe; color: #0288d1; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">${am}</span>`
+            ).join('');
+    }
 });
+

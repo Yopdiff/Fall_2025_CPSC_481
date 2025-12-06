@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     renderItinerary();
-    setupFabHandler();     // Consolidated FAB logic
-    setupDeleteHandlers(); // Only handles entering delete mode & modal
-    setupEditHandlers();   // Only handles entering edit mode & modal
+    setupFabHandler();     
+    setupDeleteHandlers(); 
+    setupEditHandlers();   
 });
 
 let isDeleteMode = false;
@@ -17,7 +17,6 @@ function setupFabHandler() {
     if (!fabBtn) return;
 
     fabBtn.addEventListener('click', (e) => {
-        // If in a special mode, this click acts as "Cancel" / "Close Mode"
         if (isDeleteMode) {
             e.preventDefault();
             toggleDeleteMode(false);
@@ -25,12 +24,13 @@ function setupFabHandler() {
             e.preventDefault();
             toggleEditMode(false);
         }
-        // If normal mode, script.js handles the menu toggle
     });
 }
 
 function renderItinerary() {
     const container = document.getElementById('itinerary-list');
+    if (!container) return; // Safety check
+
     const trips = JSON.parse(localStorage.getItem('myTrips') || '[]');
     container.innerHTML = ''; 
 
@@ -53,17 +53,34 @@ function renderItinerary() {
         card.className = 'flight-card';
         card.style.flex = '1';
         
+        // Format Date Range
         let dateDisplay = 'Date TBD';
-        if (flight.travelDate) {
-            const [year, month, day] = flight.travelDate.split('-');
-            const localDate = new Date(year, month - 1, day);
-            dateDisplay = localDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        if (flight.departDate && flight.returnDate) {
+             const formatDate = (dateStr) => {
+                const [y, m, d] = dateStr.split('-');
+                const date = new Date(y, m - 1, d);
+                return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+             };
+             dateDisplay = `${formatDate(flight.departDate)} - ${formatDate(flight.returnDate)}`;
+        } else if (flight.travelDate) {
+             const [y, m, d] = flight.travelDate.split('-');
+             const date = new Date(y, m - 1, d);
+             dateDisplay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
+
+        // Determine heart icon class based on favorite status
+        const heartClass = flight.isFavorite ? 'fas fa-heart' : 'far fa-heart';
+        const heartColor = flight.isFavorite ? '#e74c3c' : '#ccc';
+
+        // Use destination name if available, otherwise code
+        const destinationName = flight.destination || flight.destinationCode;
 
         card.innerHTML = `
             <div class="flight-card-header">
-                <div class="airline-name">${flight.airline}</div>
-                <div class="flight-price" style="font-size: 0.9rem; color: #666;">${dateDisplay}</div>
+                <div class="airline-name">${destinationName}</div>
+                <div class="fav-toggle" onclick="event.stopPropagation(); toggleFavorite(${index})" style="cursor: pointer; font-size: 1.2rem; color: ${heartColor};">
+                    <i class="${heartClass}"></i>
+                </div>
             </div>
             <div class="flight-route">
                 <div class="route-point">
@@ -81,12 +98,12 @@ function renderItinerary() {
                 </div>
             </div>
             <div class="flight-footer">
-                <div class="amenities">
-                    ${flight.amenities ? flight.amenities.map(am => `<span class="badge">${am}</span>`).join('') : ''}
+                <div style="display: flex; align-items: center; gap: 10px; width: 100%; justify-content: space-between;">
+                    <span class="flight-price" style="font-size: 0.9rem; color: #666;">${dateDisplay}</span>
+                    <button class="select-btn" onclick="event.stopPropagation(); viewTrip(${index})" aria-label="View Ticket">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
-                <button class="select-btn" onclick="event.stopPropagation(); viewTrip(${index})" aria-label="View Ticket">
-                    <i class="fas fa-arrow-right"></i>
-                </button>
             </div>
         `;
         
@@ -96,12 +113,39 @@ function renderItinerary() {
     });
 }
 
+// EXPOSE TO WINDOW
+window.toggleFavorite = function(index) {
+    const trips = JSON.parse(localStorage.getItem('myTrips') || '[]');
+    if (trips[index]) {
+        trips[index].isFavorite = !trips[index].isFavorite;
+        localStorage.setItem('myTrips', JSON.stringify(trips));
+        renderItinerary(); 
+        
+        const msg = trips[index].isFavorite ? "Added to Favourites" : "Removed from Favourites";
+        showStatus(msg);
+    }
+};
+
+window.viewTrip = function(index) {
+    if (isDeleteMode || isEditMode) return;
+    
+    const trips = JSON.parse(localStorage.getItem('myTrips') || '[]');
+    const flight = trips[index];
+    
+    if (flight) {
+        sessionStorage.setItem('bookedFlight', JSON.stringify(flight));
+        sessionStorage.setItem('flightDate', flight.travelDate);
+        window.location.href = 'itinerary-details.html';
+    }
+};
+
 function setupDeleteHandlers() {
     const btnDeleteMode = document.getElementById('btn-delete-mode');
     const fabContainer = document.querySelector('.fab-container');
     const deleteConfirmFab = document.getElementById('delete-confirm-fab');
     
-    // Enter Delete Mode
+    if (!btnDeleteMode) return;
+
     btnDeleteMode.addEventListener('click', (e) => {
         e.preventDefault();
         toggleDeleteMode(true);
@@ -109,14 +153,12 @@ function setupDeleteHandlers() {
         fabContainer.classList.remove('open'); 
     });
 
-    // Trash FAB Click -> Show Modal
     deleteConfirmFab.addEventListener('click', () => {
         if (selectedIndices.size > 0) {
             document.getElementById('delete-modal').classList.remove('hidden');
         }
     });
 
-    // Modal Actions
     document.getElementById('modal-cancel').addEventListener('click', () => {
         document.getElementById('delete-modal').classList.add('hidden');
     });
@@ -135,7 +177,8 @@ function setupEditHandlers() {
     const closeBtn = document.getElementById('edit-modal-close');
     const deleteBtn = document.getElementById('edit-modal-delete');
 
-    // Enter Edit Mode
+    if (!btnEditMode) return;
+
     btnEditMode.addEventListener('click', (e) => {
         e.preventDefault();
         toggleEditMode(true);
@@ -143,12 +186,10 @@ function setupEditHandlers() {
         fabContainer.classList.remove('open');
     });
 
-    // Close Modal
     closeBtn.addEventListener('click', () => {
         editModal.classList.add('hidden');
     });
 
-    // Delete Selected Activities
     deleteBtn.addEventListener('click', () => {
         deleteSelectedActivities();
     });
@@ -184,7 +225,7 @@ function toggleDeleteMode(active) {
         deleteConfirmFab.classList.remove('hidden');
         selectedIndices.clear();
         updateTrashButton();
-        showStatus("Select trips to delete"); // ADDED STATUS
+        showStatus("Select trips to delete");
     } else {
         body.classList.remove('delete-mode');
         deleteConfirmFab.classList.add('hidden');
@@ -223,19 +264,6 @@ function deleteSelectedTrips() {
     const newTrips = trips.filter((_, index) => !selectedIndices.has(index));
     localStorage.setItem('myTrips', JSON.stringify(newTrips));
     renderItinerary();
-}
-
-function viewTrip(index) {
-    if (isDeleteMode || isEditMode) return;
-    
-    const trips = JSON.parse(localStorage.getItem('myTrips') || '[]');
-    const flight = trips[index];
-    
-    if (flight) {
-        sessionStorage.setItem('bookedFlight', JSON.stringify(flight));
-        sessionStorage.setItem('flightDate', flight.travelDate);
-        window.location.href = 'itinerary-details.html';
-    }
 }
 
 function openEditModal(index) {
@@ -318,6 +346,6 @@ function showStatus(msg) {
     const toast = document.createElement('div');
     toast.className = 'save-status';
     toast.textContent = msg;
-    container.appendChild(toast); // Append to mobile container
+    container.appendChild(toast); 
     setTimeout(() => toast.remove(), 2000);
 }
