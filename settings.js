@@ -1,52 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const darkToggle = document.getElementById('toggle-dark-mode');
-    const notifToggle = document.getElementById('toggle-notifications');
+    const toggles = {
+        flights: document.getElementById('notify-flights'),
+        hotels: document.getElementById('notify-hotels'),
+        suggestions: document.getElementById('notify-suggestions'),
+        local: document.getElementById('notify-local')
+    };
 
-    // Load saved state
-    const darkStored = localStorage.getItem('rt_dark_mode') === 'true';
-    const notifStored = localStorage.getItem('rt_notifications') === 'true';
-
-    if (darkToggle) {
-        darkToggle.checked = darkStored;
-    }
-    if (notifToggle) {
-        notifToggle.checked = notifStored;
-    }
-
-    applyDarkMode(darkStored);
-
-    if (darkToggle) {
-        darkToggle.addEventListener('change', () => {
-            const enabled = darkToggle.checked;
-            localStorage.setItem('rt_dark_mode', String(enabled));
-            applyDarkMode(enabled);
-            showSettingsStatus(enabled ? 'Dark mode on' : 'Dark mode off');
+    // Load saved values from localStorage
+    Object.entries(toggles).forEach(([key, input]) => {
+        if (!input) return;
+        const stored = localStorage.getItem('notify_' + key);
+        if (stored === 'true') {
+            input.checked = true;
+        } else if (stored === 'false') {
+            input.checked = false;
+        }
+        input.addEventListener('change', () => {
+            localStorage.setItem('notify_' + key, String(input.checked));
+            showNotifyToast(key, input.checked);
         });
-    }
-
-    if (notifToggle) {
-        notifToggle.addEventListener('change', () => {
-            const enabled = notifToggle.checked;
-            localStorage.setItem('rt_notifications', String(enabled));
-            showSettingsStatus(
-                enabled ? 'Trip alerts enabled' : 'Trip alerts disabled'
-            );
-        });
-    }
+    });
 });
 
-function applyDarkMode(enabled) {
-    if (enabled) {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-}
+function showNotifyToast(type, on) {
+    const msgMap = {
+        flights: 'Flight alerts',
+        hotels: 'Hotel alerts',
+        suggestions: 'Suggestions',
+        local: 'Local alerts'
+    };
+    const base = msgMap[type] || 'Notifications';
 
-function showSettingsStatus(msg) {
-    const status = document.createElement('div');
-    status.className = 'save-status';
-    status.textContent = msg;
-    document.body.appendChild(status);
-    setTimeout(() => status.remove(), 1200);
+    const toast = document.createElement('div');
+    toast.className = 'notify-toast';
+    toast.textContent = base + (on ? ' turned on' : ' turned off');
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('fade-out');
+    }, 900);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 1400);
 }

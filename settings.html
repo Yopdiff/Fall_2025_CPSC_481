@@ -3,62 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings – Roam Together Tours</title>
+    <title>Notification Settings – Roam Together Tours</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div id="mobile-container">
+
+        <!-- Header like your PDF (Paris, dates, back, bell) -->
         <header class="screen-header">
-            <div class="logo-title">
-                <img src="public/logo.png" alt="Roam Together Tours" class="logo-small">
-                <span>Settings</span>
+            <button class="header-back-btn" type="button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-trip-text">
+                <div class="header-trip-city">Paris</div>
+                <div class="header-trip-dates">2025, OCT 13 – 16</div>
             </div>
+            <button class="header-bell-btn" type="button">
+                <i class="fas fa-bell"></i>
+            </button>
         </header>
 
         <main class="content settings-content">
 
-            <section class="settings-section">
-                <h2>Appearance</h2>
+            <h1 class="settings-main-title">Notifications Settings</h1>
+
+            <div class="settings-list">
+
                 <div class="settings-row">
-                    <div class="settings-text">
-                        <h3>Dark mode</h3>
-                        <p>Use a darker background for low light.</p>
-                    </div>
+                    <span class="settings-label">Flights</span>
                     <label class="switch">
-                        <input type="checkbox" id="toggle-dark-mode">
+                        <input type="checkbox" id="notify-flights">
                         <span class="slider round"></span>
                     </label>
                 </div>
-            </section>
 
-            <section class="settings-section">
-                <h2>Notifications</h2>
                 <div class="settings-row">
-                    <div class="settings-text">
-                        <h3>Trip alerts</h3>
-                        <p>Get reminders before flights and activities.</p>
-                    </div>
+                    <span class="settings-label">Hotels</span>
                     <label class="switch">
-                        <input type="checkbox" id="toggle-notifications">
+                        <input type="checkbox" id="notify-hotels">
                         <span class="slider round"></span>
                     </label>
                 </div>
-            </section>
 
-            <section class="settings-section">
-                <h2>Account</h2>
                 <div class="settings-row">
-                    <div class="settings-text">
-                        <h3>Profile</h3>
-                        <p>Manage basic traveller details (placeholder).</p>
-                    </div>
-                    <button class="settings-link-btn" type="button">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                    <span class="settings-label">Suggestions</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notify-suggestions">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
-            </section>
+
+                <div class="settings-row">
+                    <span class="settings-label">Local Alerts</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notify-local">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
 
         </main>
 
@@ -81,6 +86,7 @@
                 <span>Settings</span>
             </a>
         </nav>
+
     </div>
 
     <script src="settings.js"></script>
