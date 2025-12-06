@@ -340,3 +340,29 @@ h1 {
     font-weight: bold;
     color: #2C3E50;
 }
+
+/* --- View Ticket Button (Inside Map Card) --- */
+.view-ticket-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #f8f9fa;
+    color: #2C3E50;
+    border: none;
+    border-top: 1px solid #eee;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.view-ticket-btn:hover {
+    background-color: #e9ecef;
+}
+
+.view-ticket-btn i {
+color: #89CFF0; /* Theme blue */
+}

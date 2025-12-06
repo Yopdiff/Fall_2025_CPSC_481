@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Retrieve data
+    // 1. Check for View Mode
+    const params = new URLSearchParams(window.location.search);
+    const isViewMode = params.get('mode') === 'view';
+    
+    if (isViewMode) {
+        const successMsg = document.querySelector('.success-message');
+        if (successMsg) {
+            successMsg.style.display = 'none';
+        }
+    }
+
+    // 2. Retrieve data
     const flightData = sessionStorage.getItem('bookedFlight');
     const flightDate = sessionStorage.getItem('flightDate');
 

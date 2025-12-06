@@ -80,6 +80,12 @@ function initializeSchedule() {
                     </div>
                 </div>
                 <div id="mini-map" class="mini-map-container"></div>
+                
+                <!-- ADDED: View Ticket Button -->
+                <!-- UPDATED: Add ?mode=view parameter -->
+                <button class="view-ticket-btn" onclick="window.location.href='ticket.html?mode=view'">
+                    <i class="fas fa-ticket-alt"></i> View Ticket
+                </button>
             </div>`;
             daySection.innerHTML += mapCardHTML;
         }
