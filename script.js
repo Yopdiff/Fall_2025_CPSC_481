@@ -76,3 +76,45 @@ function showStatus(msg) {
     document.body.appendChild(status);
     setTimeout(() => status.remove(), 1200);
 }
+const fabBtn = document.getElementById("fabPlus");
+const fabMenu = document.getElementById("fabMenu");
+
+fabBtn.addEventListener("click", () => {
+    fabMenu.classList.toggle("hidden");
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const fab = document.getElementById('fabPlus');
+    const menu = document.getElementById('fabMenu');
+
+    if (fab && menu) {
+        fab.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            menu.classList.add('hidden');
+        });
+
+        menu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+});
+
+
+function openAddToItinerary() {
+    window.location.href = 'add_to_itinerary.html';
+}
+
+function openEditItinerary() {
+    window.location.href = 'edit_itinerary.html';
+}
+
+function openDeleteItinerary() {
+    window.location.href = 'delete_itinerary.html';
+}
+
+function openDownloadItinerary() {
+    window.location.href = 'download_itinerary.html';
+}

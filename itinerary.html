@@ -17,14 +17,19 @@
 
     <div id="mobile-container">
 
+        <!-- Header -->
         <header>
-            <img src="./public/logo.png" alt="A placeholder image of a travel destination">
+            <img src="./public/logo.png" alt="Roam Together Tours logo">
         </header>
+
+        <!-- Tabs -->
         <div class="tab-bar">
-            <a href="itinerary.html" class="tab-btn" id="tab-itinerary">Itinerary</a>
+            <a href="itinerary.html" class="tab-btn active" id="tab-itinerary">Itinerary</a>
             <a href="share.html" class="tab-btn" id="tab-share">Share</a>
             <a href="search.html" class="tab-btn" id="tab-search">Search</a>
         </div>
+
+        <!-- Main content -->
         <main class="content" id="main-content">
             <div id="itinerary-list" style="width: 100%; display: flex; flex-direction: column; gap: 15px;"></div>
 
@@ -33,30 +38,38 @@
             </a>
         </main>
 
-        <!-- NEW: Delete Confirmation FAB (Bottom Left) -->
+        <!-- Hidden delete FAB (only appears in delete mode) -->
         <button class="fab-btn delete-confirm-btn hidden" id="delete-confirm-fab">
             <i class="fas fa-trash"></i>
         </button>
 
-        <div class="fab-container">
-            <button class="fab-btn" id="fab-btn">
-                <i class="fas fa-plus"></i>
-            </button>
-            <div class="fab-menu" id="fab-menu">
-                <!-- Added ID for JS access -->
-                <a href="#" class="fab-menu-item" id="btn-edit-mode">
-                    <i class="fas fa-edit"></i>
-                    <span>Edit itinerary</span>
-                </a>
-                <!-- Added ID for JS access -->
-                <a href="#" class="fab-menu-item" id="btn-delete-mode">
-                    <i class="fas fa-trash"></i>
-                    <span>Delete itinerary</span>
-                </a>
+        <!-- ✔ CORRECT PLUS BUTTON -->
+        <button class="fab-plus" id="fabPlus">+</button>
+
+        <!-- ✔ CORRECT POPUP MENU -->
+        <div class="fab-menu hidden" id="fabMenu">
+            <div class="fab-menu-card">
+                <p class="fab-menu-title">What would you like to do?</p>
+
+                <button class="fab-menu-item" onclick="location.href='itinerary-details.html'">
+                    Add to itinerary
+                </button>
+
+                <button class="fab-menu-item" onclick="location.href='edit-itinerary.html'">
+                    Edit itinerary
+                </button>
+
+                <button class="fab-menu-item" id="fabDelete">
+                    Delete itinerary
+                </button>
+
+                <button class="fab-menu-item" onclick="location.href='download.html'">
+                    Download
+                </button>
             </div>
         </div>
 
-        <!-- NEW: Custom Confirmation Modal -->
+        <!-- Delete confirmation modal -->
         <div id="delete-modal" class="modal-overlay hidden">
             <div class="modal-content">
                 <div class="modal-icon">
@@ -71,6 +84,7 @@
             </div>
         </div>
 
+        <!-- Bottom navigation -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
@@ -80,11 +94,11 @@
                 <i class="fas fa-globe-americas"></i>
                 <span>Maps</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="favourites.html" class="nav-item">
                 <i class="far fa-heart"></i>
                 <span>Favourites</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="settings.html" class="nav-item">
                 <i class="fas fa-sliders-h"></i>
                 <span>Settings</span>
             </a>
@@ -94,6 +108,22 @@
 
     <script src="script.js"></script>
     <script src="itinerary.js"></script>
+
+    <script>
+        // Toggle plus menu
+        const fabBtn = document.getElementById("fabPlus");
+        const fabMenu = document.getElementById("fabMenu");
+
+        fabBtn.addEventListener("click", () => {
+            fabMenu.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (e.target !== fabBtn && !fabMenu.contains(e.target)) {
+                fabMenu.classList.add("hidden");
+            }
+        });
+    </script>
 
 </body>
 </html>
