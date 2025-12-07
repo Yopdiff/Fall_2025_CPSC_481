@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roam Together Tours</title>
 
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/search.css">
     <link rel="stylesheet" href="style/destination.css">
@@ -16,57 +13,86 @@
 </head>
 <body>
 
-    <div id="mobile-container">
+<div id="mobile-container" class="app-shell">
 
-      
-        <header>
-            <img src="./public/logo.png" alt="Roam Together Tours Logo">
-        </header>
-
-       
-        <div class="tab-bar">
-            <a href="itinerary.html" class="tab-btn" id="tab-itinerary">Itinerary</a>
-            <a href="share.html" class="tab-btn" id="tab-share">Share</a>
-            <a href="search.html" class="tab-btn" id="tab-search">Search</a>
+    <!-- SIMPLE TOP BAR WITH LOGO + NAME -->
+    <header class="hero-header">
+        <div class="hero-brand-wrap">
+            <img src="./public/logo.png" class="hero-logo-small" alt="Roam Together Tours logo">
+           
         </div>
+    </header>
 
-      
-        <main class="content" id="main-content">
-            <div class="logo-section">
-                <img src="./public/logo.png" alt="Roam Together Tours Logo">
+    <!-- MAIN CONTENT -->
+    <main class="content home-content" id="main-content">
+        <section class="home-hero-section">
+            <!-- TABS INSIDE WHITE CARD -->
+            <div class="card-tabs-row">
+                <a href="itinerary.html" class="card-tab active">Itinerary</a>
+                <a href="share.html" class="card-tab">Share</a>
+                <a href="search.html" class="card-tab">Search</a>
             </div>
 
-            <a href="search.html" class="add-trip-box">
-                <span class="add-trip-label">Start a new tour</span>
+            <!-- LOGO LOCKUP INSIDE CARD -->
+            <div class="home-logo-lockup">
+                <div class="home-logo-circle">
+                    <img src="./public/logo.png" alt="Roam Together Tours logo">
+                </div>
+                <p class="home-logo-caption">Trip planner by Roam Together Tours</p>
+            </div>
+
+            <h2 class="home-title">
+                Plan smarter trips with <span>Roam Together Tours</span>
+            </h2>
+
+            <p class="home-subtitle">
+                Build itineraries, share with friends, and keep everything in one clean timeline.
+            </p>
+
+            <a href="search.html" class="primary-cta-btn">
+                <span>Start a new tour</span>
+                <i class="fas fa-arrow-right"></i>
             </a>
-        </main>
 
-        
-        <nav class="bottom-nav">
-            <a href="index.html" class="nav-item active">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
+            <div class="home-highlight-row">
+                <div class="highlight-pill">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>Smart flights</span>
+                </div>
+                <div class="highlight-pill">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Interactive maps</span>
+                </div>
+                <div class="highlight-pill">
+                    <i class="fas fa-users"></i>
+                    <span>Share with crew</span>
+                </div>
+            </div>
+        </section>
+    </main>
 
-            <a href="map.html" class="nav-item">
-                <i class="fas fa-globe-americas"></i>
-                <span>Maps</span>
-            </a>
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav bottom-nav-modern">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="map.html" class="nav-item">
+            <i class="fas fa-globe-americas"></i>
+            <span>Maps</span>
+        </a>
+        <a href="favourites.html" class="nav-item">
+            <i class="far fa-heart"></i>
+            <span>Favourites</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+            <i class="fas fa-sliders-h"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
 
-            <a href="favourites.html" class="nav-item">
-                <i class="far fa-heart"></i>
-                <span>Favourites</span>
-            </a>
+</div>
 
-            <a href="settings.html" class="nav-item">
-                <i class="fas fa-sliders-h"></i>
-                <span>Settings</span>
-            </a>
-        </nav>
-
-    </div>
-
-    =
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

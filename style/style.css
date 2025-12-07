@@ -584,9 +584,7 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-/* ---------------------------
-   10. Dark mode baseline
---------------------------- */
+
 
 body.dark-mode #mobile-container {
     background: #020617;
@@ -618,4 +616,445 @@ body.dark-mode .tab-btn.active {
     background: #38bdf8;
     border-color: #0ea5e9;
     color: #0b1120;
+}
+
+
+.app-shell {
+    background:
+        radial-gradient(circle at 0% 0%, rgba(59,130,246,0.18) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(37,99,235,0.2) 0, transparent 60%),
+        #e7eef9;
+}
+
+/* top bar – slightly shorter and tighter */
+.hero-header {
+    height: 56px;
+    min-height: 56px;
+    padding: 10px 18px;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    background: linear-gradient(120deg, #0f172a 0%, #1d4ed8 45%, #22c1ff 100%);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.46);
+}
+
+/* main content centered */
+.home-content {
+    padding: 18px 12px 90px;
+    display: flex;
+    justify-content: center;
+}
+
+/* white card centered, with nicer gradient and tighter width */
+.home-hero-section {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border-radius: 26px;
+    padding: 22px 20px 26px;
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.20),
+        0 0 0 1px rgba(148, 163, 184, 0.12);
+    text-align: center;
+}
+
+/* tabs row – centered and balanced */
+.card-tabs-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding: 4px;
+    border-radius: 999px;
+    background: #edf2f7;
+}
+
+.card-tab {
+    flex: 1;
+    max-width: 110px;
+    text-align: center;
+    border-radius: 999px;
+    padding: 7px 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #111827;
+    background: transparent;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.card-tab.active {
+    background: #0f172a;
+    color: #f9fafb;
+    transform: translateY(-1px);
+}
+
+/* logo inside card */
+.home-logo-lockup {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.home-logo-circle {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 6px;
+    box-shadow:
+        0 12px 26px rgba(15,23,42,0.20),
+        0 0 0 1px rgba(148,163,184,0.45);
+}
+
+.home-logo-circle img {
+    max-width: 56px;
+}
+
+.home-logo-caption {
+    font-size: 0.76rem;
+    color: #6b7280;
+}
+
+/* title and subtext – centered and spaced */
+.home-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.15rem;
+    line-height: 1.35;
+}
+
+.home-title span {
+    color: #2563eb;
+}
+
+.home-subtitle {
+    margin: 0 auto 18px;
+    max-width: 290px;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: #4b5563;
+}
+
+/* main CTA – pulled a bit up, fully centered */
+.primary-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 18px;
+    padding: 11px 26px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: linear-gradient(90deg, #2563eb 0%, #22c1ff 100%);
+    color: #ffffff;
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.45);
+}
+
+/* highlight pills row – centered, consistent spacing */
+.home-highlight-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.highlight-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eef2ff;
+    font-size: 0.78rem;
+    color: #1f2937;
+}
+
+.highlight-pill i {
+    font-size: 0.85rem;
+    color: #2563eb;
+}
+
+/* bottom nav – small tweak so it feels aligned with new look */
+.bottom-nav-modern {
+    background: #020617;
+}
+.bottom-nav-modern .nav-item span {
+    font-size: 0.78rem;
+}
+header.hero-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 16px 18px 14px;
+    background: linear-gradient(135deg, #1d4ed8 0%, #22c1ff 55%, #0f172a 100%);
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.45);
+
+    height: 76px;
+    min-height: 76px;
+    overflow: visible;
+}
+
+
+
+.hero-logo-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 6px 14px rgba(15, 23, 42, 0.35),
+        0 0 0 2px rgba(255, 255, 255, 0.75);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.hero-logo-badge img {
+    max-width: 36px;
+    height: auto;
+    display: block;
+}
+
+
+
+.hero-brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #e5f2ff;
+    letter-spacing: 0.08em;
+}
+
+.hero-brand-main {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.hero-brand-sub {
+    font-size: 0.7rem;
+    opacity: 0.9;
+}
+
+
+
+.hero-tab-row {
+    position: absolute;
+    left: 50%;
+    bottom: -22px;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 8px;
+    padding: 4px;
+    background: rgba(15, 23, 42, 0.9);
+    border-radius: 999px;
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.45);
+}
+
+.hero-tab {
+    min-width: 84px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: none;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #e5e7eb;
+    background: transparent;
+}
+
+.hero-tab.active {
+    background: #ffffff;
+    color: #111827;
+}
+
+
+
+.home-content {
+    background: radial-gradient(circle at 0% 0%, #e0f2fe 0, #f9fafb 40%, #eef2ff 100%);
+    padding-top: 42px; 
+}
+
+
+
+.home-logo-ghost img {
+    opacity: 0.06;
+    max-width: 120px;
+    margin-bottom: 8px;
+}
+a {
+    text-decoration: none !important; 
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.hero-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding-top: 32px;
+    padding-bottom: 18px;
+    height: auto;
+    min-height: 130px;
+    background: linear-gradient(120deg, #0f172a 0%, #2563eb 45%, #22c1ff 100%);
+    border-radius: 0 0 28px 28px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
+}
+
+
+.hero-logo-badge {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 10px 26px rgba(15,23,42,0.28),
+        0 0 0 2px rgba(255,255,255,0.65);
+    margin-bottom: 8px;
+}
+.hero-logo-badge img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+
+.hero-brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6px;
+    margin-bottom: 14px;
+}
+
+.hero-brand-main {
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+}
+.hero-brand-sub {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 1px;
+    letter-spacing: 0.12em;
+}
+
+
+.hero-tab-row {
+    display: flex;
+    justify-content: center;
+    background: rgba(255,255,255,0.2);
+    border-radius: 999px;
+    padding: 6px 6px;
+    gap: 6px;
+    width: fit-content;
+    margin: 0 auto 2px;
+    box-shadow: inset 0 0 4px rgba(255,255,255,0.25);
+}
+
+
+.hero-tab {
+    padding: 7px 20px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    background: transparent;
+    color: #0f172a;
+    font-weight: 500;
+    transition: 0.18s ease;
+}
+.hero-tab.active {
+    background: #0f172a;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    transform: translateY(-1px);
+}
+
+
+.home-hero-section {
+    margin-top: 18px;
+    border-radius: 26px;
+    padding-top: 30px;
+    padding-bottom: 32px;
+    box-shadow:
+        0 14px 40px rgba(15,23,42,0.22),
+        0 0 0 1px rgba(148,163,184,0.18);
+}
+
+
+.home-logo-lockup {
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+.home-logo-circle {
+    margin: 0 auto 6px;
+}
+.home-logo-caption {
+    margin-bottom: 8px;
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+
+.primary-cta-btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+
+
+.home-highlight-row {
+    margin-top: 4px;
+}
+
+
+.bottom-nav-modern .nav-item span {
+    margin-top: 2px;
+    font-weight: 500;
+}
+.hero-brand-text,
+.hero-brand-main,
+.hero-brand-sub {
+    display: none !important;
+}
+
+
+.hero-header {
+    padding-top: 34px;
+    justify-content: flex-start;
+    height: 160px;
+}
+
+.hero-logo-badge {
+    margin-top: 10px;
+    margin-bottom: 0;
+    width: 80px;
+    height: 80px;
+}
+
+.hero-logo-badge img {
+    width: 66px;
+    height: 66px;
 }
