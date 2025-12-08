@@ -3,7 +3,7 @@
 | Full Name | UCID |
 | :--- | :--- |
 | Hongwoo Yoon | 30113779 |
-| Alexander Firth | UCID |
+| Alexander Firth | 30223984 |
 | Ayushi Patil | UCID |
 | Arpit Chitkara | UCID |
 
