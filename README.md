@@ -4,8 +4,8 @@
 | :--- | :--- |
 | Hongwoo Yoon | 30113779 |
 | Alexander Firth | 30223984 |
-| Ayushi Patil | UCID |
-| Arpit Chitkara | UCID |
+| Ayushi Patil | 30223926 |
+| Arpit Chitkara | 30170166 |
 
 **Course:** CPSC 481 - Fall 2025
 
